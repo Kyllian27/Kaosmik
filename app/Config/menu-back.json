@@ -1,0 +1,18 @@
+{"employe" : {
+"title" : "Employe",
+"url" : "/employe",
+"icon" : "<i class=\"fa-solid fa-user\"></i>",
+"class": "",
+  "subs":{
+  creation:{
+    "title" : "Creation",
+    "url" : "/animal",
+    "icon" : "<i class=\"fa-solid fa-user\"></i>",
+    "class": ""
+  }
+  }
+
+
+
+  }
+}
