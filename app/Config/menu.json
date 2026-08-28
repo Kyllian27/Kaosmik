@@ -1,0 +1,14 @@
+{
+  "animal" : {
+    "title" : "Animal",
+    "url" : "/animal",
+    "icon" : "<i class=\"fa-solid fa-paw\"></i>",
+    "class": ""
+  },
+  "employe" : {
+    "title" : "Employe",
+    "url" : "/employe",
+    "icon" : "<i class=\"fa-solid fa-user\"></i>",
+    "class": ""
+  }
+}
