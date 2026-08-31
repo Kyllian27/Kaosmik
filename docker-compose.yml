@@ -1,28 +1,26 @@
 services:
   db:
     image: mariadb:latest
-    container_name: kaosmik1_db
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: kaosmik1_db
-      MYSQL_USER: user_kaosmik
+      MYSQL_DATABASE: kaosmik
+      MYSQL_USER: root
       MYSQL_PASSWORD: admin
     ports:
-      - "3307:3306" # Port 3307 exposé sous Windows pour ne pas faire de conflit
+      - "3306:3306"
     volumes:
-      - kaosmik1_db_data:/var/lib/mysql
+      - db_data:/var/lib/mysql
     networks:
       - app-network
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:latest
-    container_name: kaosmik1_phpmyadmin
     environment:
       PMA_HOST: db
       MYSQL_ROOT_PASSWORD: root
       UPLOAD_LIMIT: 1024M
     ports:
-      - "8082:80" # Port 8082 pour éviter le conflit avec le port 8081
+      - "8081:80"
     networks:
       - app-network
 
@@ -31,4 +29,4 @@ networks:
     driver: bridge
 
 volumes:
-  kaosmik1_db_data:
+  db_data:

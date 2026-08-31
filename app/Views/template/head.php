@@ -16,7 +16,7 @@
     <script src="https://cdn.jsdelivr.net/npm/jquery@4.0.0/dist/jquery.min.js"></script>
     <!-- JS -->
     <script src="<?= base_url('/js/script.js'); ?>"></script>
-    <!-- BOOTSTRAP -->
+    <!-- THEME TABLER -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/core@latest/dist/css/tabler.min.css">
     <script src="https://cdn.jsdelivr.net/npm/@tabler/core@latest/dist/js/tabler.min.js"></script>
     <!-- FontAwesome -->
@@ -35,11 +35,11 @@
     <!-- BOOTSTRAP PASSWORD -->
     <script src="https://unpkg.com/bootstrap-show-password@1.3.0/dist/bootstrap-show-password.min.js"></script>
 </head>
-<?php if (isset($menus)): ?>
-    <?= view("template/{$layout}/menu", $menus); ?>
-<?php endif; ?>
 <body>
-<div class="container">
-    <div class="page-body">
-        <div class
-    </div>
+<div class="page">
+<?php if (isset($menus)): ?>
+    <?= view("template/{$layout}/menu"); ?>
+<?php endif; ?>
+    <div class="page-wrapper">
+        <div class="page-body">
+            <div class="container">
