@@ -6,7 +6,7 @@
         </button>
         <h1 class="navbar-brand navbar-brand-autodark">
             <a href="<?= base_url('admin'); ?>">
-                <i class="ti ti-shield-lock me-2"></i>ZooLogik
+                <i class="ti ti-shield-lock me-2"></i>Kaosmik
             </a>
         </h1>
         <div class="collapse navbar-collapse" id="sidebar-menu">

@@ -7,10 +7,9 @@ use CodeIgniter\HTTP\ResponseInterface;
 
 class AdminController extends BaseController
 {
-    protected $layout= "back";
+    protected $layout = "back";
     public function index()
     {
-
-        return $this->render("admin/dashboard");
+        return $this->render('admin/dashboard');
     }
 }
