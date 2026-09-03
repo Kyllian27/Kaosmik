@@ -4,71 +4,53 @@ namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
 use App\Models\LevelThresholdModel;
-use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
-use Psr\Log\LoggerInterface;
 
 class LevelThresholdController extends BaseController
 {
-    protected $layout = "back";
-    private $thresholdModel;
+    private $levelThresholdModel;
+    protected $layout = 'back';
+    protected $current_menu = 'level-threshold';
 
-    public function __construct()
-    {
-
-        // Instanciation directe avec new
-        $this->thresholdModel = new LevelThresholdModel();
+    public function __construct(){
+        $this->levelThresholdModel = model('LevelThresholdModel');
     }
-
     public function index()
     {
         helper('form');
-        $this->title = "Gestion de la courbe de niveaux";
-
-        $ltc = $this->thresholdModel->findAll();
-
-        return $this->render('admin/level-threshold/index', ['levelThresholds' => $ltc]);
+        $levelThresholds = $this->levelThresholdModel->orderBy('level', 'ASC')->findAll();
+        return $this->render('admin/level-threshold/index', ['levelThresholds' => $levelThresholds]);
     }
 
-    public function create()
-    {
-        $ltc = $this->request->getpost();
-        if (isset($ltc)) {
-            $this->thresholdModel->save($ltc);
-            $this->sucess('Success');
-            return $this->redirect('/admin/level-threshold');
-
-
-        }
-    }
-
-    public function update()
-    {
-        $data = $this->request->getpost();
-        if ($this->thresholdModel->update($data['id'], $data)) {
-            $this->success('niveaux modifier');
+    public function create() {
+        $data = $this->request->getPost();
+        if ($this->levelThresholdModel->insert($data)) {
+            $this->success("Niveau ajouté !");
         } else {
-            $this->error('Erreur lors de la modification du niveaux');
-        }
-        return $this->redirect('/admin/level-threshold');
-
-    }
-
-
-    public function delete()
-    {
-        $id = $this->request->getvar('id');
-        if ($this->levelthresholdModel->delete($id)) {
-            $this->success('niveaux supprimer');
-
-        } else {
-            $this->error('Erreur lors de la suppression du niveaux');
+            $this->error("Erreur lors de l'ajout du niveau");
         }
         return $this->redirect('/admin/level-threshold');
     }
 
+    public function delete() {
+        $id = $this->request->getVar('id');
+        if ($this->levelThresholdModel->delete($id)) {
+            $this->success('Niveau supprimé');
+        } else {
+            $this->error("Erreur lors de la suppression du niveau");
+        }
+        return $this->redirect('/admin/level-threshold');
+    }
 
+    public function update() {
+        $data = $this->request->getPost();
+        $id = $data['id'];
+        unset($data['id']);
+        if ($this->levelThresholdModel->update($id, $data)) {
+            $this->success('Niveau modifié');
+        } else {
+            $this->error("Erreur lors de la modification du niveau");
+        }
+        return $this->redirect('/admin/level-threshold');
+    }
 }
-
-
-

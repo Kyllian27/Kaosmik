@@ -66,7 +66,7 @@ class CreatePlayersTable extends Migration
 
         $this->forge->addPrimaryKey('id');
         $this->forge->addForeignKey('user_id', 'users', 'id', 'CASCADE', 'CASCADE');
-        $this->forge->createTable('players');
+        $this->forge->createTable('players,',true);
     }
 
     public function down()

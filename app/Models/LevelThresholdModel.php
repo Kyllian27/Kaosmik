@@ -6,14 +6,13 @@ use CodeIgniter\Model;
 
 class LevelThresholdModel extends Model
 {
-    // Remplacé 'level_thresholds' par 'Level_thresholds'
-    protected $table            = 'Level_thresholds';
+    protected $table            = 'level_thresholds';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['level', 'experience_required'];
+    protected $allowedFields    = ['level','experience_required'];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;

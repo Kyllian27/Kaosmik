@@ -32,5 +32,6 @@ class PlayerModel extends Model
     public function findByUserId(int $userId)
     {
         return $this->where('user_id', $userId)->first();
+
     }
 }
