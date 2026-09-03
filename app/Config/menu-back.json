@@ -4,5 +4,13 @@
     "url" : "/admin/user",
     "icon" : "<i class=\"fa-solid fa-users\"></i>",
     "class": ""
-    }
+    },
+  "level" : {
+    "title" : "Level_threshold",
+    "url": "/admin/level-threshold",
+    "icon": "<i class=\"fa-solid fa-circle-up\"></i>",
+    "class": ""
   }
+  }
+
+
