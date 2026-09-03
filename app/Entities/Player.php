@@ -46,31 +46,31 @@ class Player extends Entity
         return $this;
     }
 
-    public function setExperience(int $exp): self {
+    public function setExperience($exp) : self {
+        //Met à jour l'experience
         $this->attributes['experience'] = $exp;
 
-        $newlevel = $this->checklevel($exp);
-        $this->attributes['level'] = $newlevel;
-
+        //Verifie le niveau
+        $newLevel = $this->checkLevel((int)$exp);
+        $this->attributes['level'] = $newLevel;
         return $this;
     }
 
     /**
-     * calcule le niveaux corespondant à un montant d'experience
+     * Calcule le niveau correspondant à un montant d'experience
      * @param int $exp Experience à chercher
-     * @return int Niveaux correspondant
+     * @return int Niveau correspondant ou par défaut 1
      */
-    public function checklevel(int $exp) : int {
-        $levelthresholdModel = model(LevelThresholdModel::class);
+    public function checkLevel(int $exp) : int {
+        $levelThresholdModel = model(LevelThresholdModel::class);
 
-        //cherche le niveaux le plus élevé débloquer pour cette experience
-        $threshold = $levelthresholdModel
+        //Cherche le niveau le plus élevé débloqué par cette expérience
+        $threshold = $levelThresholdModel
             ->where('experience_required <=', $exp)
             ->orderBy('level', 'DESC')
             ->first();
-        //On retourne le niveaux trouvé sinon 1
-        return $threshold ? (int)$threshold['level'] : 1;
 
-
+        //On retourne le niveau trouvé sinon 1
+        return $threshold ? (int) $threshold['level'] : 1;
     }
 }

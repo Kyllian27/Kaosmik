@@ -8,25 +8,25 @@
         <div class="card h-100">
             <div class="card-body">
                 <div class="card-title">Ajouter un niveau</div>
-                <?= form_open('admin/level-thresholds/create') ?>
+                <?= form_open('admin/level-threshold/create') ?>
                 <div class="input-icon mb-3">
                     <span class="input-icon-addon">
                         <i class="fa-solid fa-n fa-xs"></i>
                         <i class="fa-solid fa-v fa-xs"></i>
                     </span>
-                    <input class="form-control" type="number" name="level" placeholder="level">
+                    <input type="number" name="level" class="form-control" placeholder="Niveau" value="<?= !empty($levelThresholds) ? end($levelThresholds)['level'] + 1 : 1; ?>" min="1" title="Niveau">
                 </div>
                 <div class="input-icon mb-3">
                     <span class="input-icon-addon">
                         <i class="fa-solid fa-x fa-xs"></i>
                         <i class="fa-solid fa-p fa-xs"></i>
                     </span>
-                    <input class="form-control" type="number" name="experience_required" placeholder="experience_required">
+                    <input type="number" name="experience_required" class="form-control" placeholder="Experience requise" value="<?= !empty($levelThresholds) ? round(end($levelThresholds)['experience_required'] * 1.3): 1; ?>" min="1" title="Experience requise">
                 </div>
                 <div class="d-grid">
                     <button type="submit" class="btn btn-primary"><i class="fa-regular fa-floppy-disk me-2"></i>Ajouter</button>
+                    <?= form_close(); ?>
                 </div>
-                <?= form_close(); ?>
             </div>
         </div>
     </div>
@@ -42,24 +42,22 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <?php foreach ($levelThresholds as $ltc): ?>
+                    <?php foreach ($levelThresholds as $lt) : ?>
                         <tr>
-                            <td><?= $ltc['level'] ?></td>
-                            <td><?= $ltc['experience_required'] ?></td>
-                            <td class="d-flex gap-1">
-                                <span class="btn btn-sm btn-warning openEditModal"
-                                      data-id="<?= $ltc['id'] ?>"
-                                      data-level="<?= $ltc['level'] ?>"
-                                      data-exp="<?= $ltc['experience_required'] ?>">
+                            <td><?= $lt['level'];?></td>
+                            <td><?= $lt['experience_required'];?></td>
+                            <td class="d-flex">
+                                <?= form_open('admin/level-threshold/delete'); ?>
+                                <?= form_hidden('id', $lt['id']);?>
+                                <button type="submit" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></button>
+                                <?= form_close(); ?>
+                                <span
+                                    class="ms-2 btn btn-sm btn-warning openEditModal"
+                                    data-level="<?= $lt['level'];?>"
+                                    data-exp="<?= $lt['experience_required'];?>"
+                                    data-id="<?= $lt['id'];?>">
                                     <i class="fa-solid fa-pen"></i>
                                 </span>
-
-                                <?= form_open('admin/level-thresholds/delete') ?>
-                                <?= form_hidden('id', $ltc['id']) ?>
-                                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Confirmer la suppression ?');">
-                                    <i class="fa-solid fa-trash"></i>
-                                </button>
-                                <?= form_close(); ?>
                             </td>
                         </tr>
                     <?php endforeach; ?>
@@ -67,60 +65,57 @@
                 </table>
             </div>
 
-            <!-- Modale de modification -->
-            <div class="modal fade" id="editModal" tabindex="-1">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title">Modification</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                        </div>
-                        <?= form_open('admin/level-thresholds/update') ?>
-                        <div class="modal-body">
-                            <input type="hidden" id="updateId" name="id" value="">
-
-                            <div class="input-icon mb-3">
-                                <span class="input-icon-addon">
-                                    <i class="fa-solid fa-n fa-xs"></i>
-                                    <i class="fa-solid fa-v fa-xs"></i>
-                                </span>
-                                <input class="form-control" type="number" id="updateLevel" name="level" placeholder="level">
-                            </div>
-                            <div class="input-icon mb-3">
-                                <span class="input-icon-addon">
-                                    <i class="fa-solid fa-x fa-xs"></i>
-                                    <i class="fa-solid fa-p fa-xs"></i>
-                                </span>
-                                <input class="form-control" type="number" id="updateExp" name="experience_required" placeholder="experience_required">
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-                            <button type="submit" class="btn btn-primary">Sauvegarder</button>
-                        </div>
-                        <?= form_close(); ?>
-                    </div>
-                </div>
-            </div>
-
         </div>
     </div>
 </div>
-
+<div class="modal fade" id="editModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5">Modification</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <?= form_open('admin/level-threshold/update'); ?>
+            <input type="hidden" id="updateId" value="" name="id">
+            <div class="modal-body">
+                <div class="input-icon mb-3">
+                    <span class="input-icon-addon">
+                        <i class="fa-solid fa-n fa-xs"></i>
+                        <i class="fa-solid fa-v fa-xs"></i>
+                    </span>
+                    <input id="updateLevel" type="number" name="level" class="form-control" placeholder="Niveau" value="" min="1" title="Niveau">
+                </div>
+                <div class="input-icon mb-3">
+                    <span class="input-icon-addon">
+                        <i class="fa-solid fa-x fa-xs"></i>
+                        <i class="fa-solid fa-p fa-xs"></i>
+                    </span>
+                    <input id="updateExperience" type="number" name="experience_required" class="form-control" placeholder="Experience requise" value="" min="1" title="Experience requise">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                <button type="submit" class="btn btn-primary">Sauvegarder</button>
+            </div>
+            <?= form_close(); ?>
+        </div>
+    </div>
+</div>
+<style>
+    /* Annule le flex: 0 0 50% de Tabler sur les boutons de pagination */
+    .bootstrap-table .pagination .page-item.page-next,
+    .bootstrap-table .pagination .page-item.page-prev {
+        flex: none !important;
+        text-align: inherit !important;
+    }
+</style>
 <script>
-    $(document).ready(function () {
+    $(document).ready(function(){
         const modalEdit = new bootstrap.Modal('#editModal');
-
         $(document).on('click','.openEditModal', function() {
             let id = $(this).data('id');
             let level = $(this).data('level');
             let exp = $(this).data('exp');
             $('#updateId').val(id);
             $('#updateLevel').val(level);
-            $('#updateExp').val(exp);
-            modalEdit.show();
-
-
-        });
-    });
-</script>
+            $('#updateExperience').val

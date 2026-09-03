@@ -9,12 +9,12 @@ class CreateLevelTresholdTable extends Migration
     public function up()
     {
         $this->forge->addField([
-            'id' => [
-                'type' => 'INT',
-                'constraint' => 11,
-                'unsigned' => true,
-                'auto_increment' => true,
-            ],
+           'id' => [
+               'type' => 'INT',
+               'constraint' => 11,
+               'unsigned' => true,
+               'auto_increment' => true,
+           ],
             'level' => [
                 'type' => 'INT',
                 'constraint' => 11,
@@ -37,7 +37,7 @@ class CreateLevelTresholdTable extends Migration
             ]
         ]);
         $this->forge->addPrimaryKey('id');
-        $this->forge->createTable('level_thresholds');
+        $this->forge->createTable('level_thresholds',true);
     }
 
     public function down()
