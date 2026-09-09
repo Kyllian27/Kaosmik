@@ -10,6 +10,7 @@ class RarityLevelController extends BaseController
 {
     // Chargement du helper de formulaire pour l'utilisation de form_open(), form_close(), etc.
     protected $helpers = ['form'];
+    protected $layout = 'back';
 
     protected $rarityLevelModel;
 

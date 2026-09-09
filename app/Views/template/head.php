@@ -19,7 +19,6 @@
 
     <!-- THEME TABLER -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/core@latest/dist/css/tabler.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tabler/core@latest/dist/js/tabler.min.js"></script>
 
     <!-- CSS -->
@@ -50,9 +49,9 @@
 </head>
 <body>
 <div class="page">
-<?php if (isset($menus)): ?>
-    <?= view("template/{$layout}/menu"); ?>
-<?php endif; ?>
+    <?php if (isset($menus)): ?>
+        <?= view("template/{$layout}/menu"); ?>
+    <?php endif; ?>
     <div class="page-wrapper">
         <div class="page-body">
             <div class="container">

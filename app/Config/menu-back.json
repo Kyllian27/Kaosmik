@@ -12,9 +12,23 @@
     "class": ""
   },
   "rarity-level" : {
-    "titlr" : "Gestion des niveaux de rareté",
+    "title" : "Gestion des niveaux de rareté",
     "url" : "/admin/rarity-level",
-    "icon" : "<i class=\"fa-solid fa-treasure-chest\"></i>",
-    "class" : ""
-  }
+    "icon" :"<i class=\"fa-solid fa-gear\"></i>",
+    "class" :""
+  },
+  "specialization_level" : {
+    "title": "",
+    "url": "",
+    "icon":"",
+    "class": ""
+  },
+"hero_model" : {
+  "title": "Model de Hero",
+  "url": "/admin/hero-model",
+  "icon":"<i class=\"fa-solid fa-shield-halved\"></i>",
+  "class": ""
+
+}
+
   }
