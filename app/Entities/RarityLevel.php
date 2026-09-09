@@ -6,11 +6,12 @@ use CodeIgniter\Entity\Entity;
 
 class RarityLevel extends Entity
 {
-    protected $datamap = [];
-    protected $dates   = ['created_at', 'updated_at', 'deleted_at'];
+    protected $dates   = ['created_at', 'updated_at'];
     protected $casts   = [
-        'id'    => 'integer',
-        'name'  => 'string',
+        'name' => 'string',
         'color' => 'string',
+        'power_multiplier' => 'float',
+        'cost_multiplier' => 'float',
+        'appearance_rate' => 'float'
     ];
 }
