@@ -5,11 +5,20 @@ use CodeIgniter\Router\RouteCollection;
 
 /** @var RouteCollection $routes */
 $routes->get('/', 'Home::index');
+//Route pour l'autentification
 $routes->get('login', [AuthController::class, 'loginView']);
 $routes->post('login', [AuthController::class, 'loginAction']);
 $routes->get('register', [AuthController::class, 'registerView']);
 $routes->post('register', [AuthController::class, 'registerAction']);
 $routes->get('logout', [AuthController::class, 'logoutAction']);
+
+//Route pour l'utilisateur connecté
+$routes->group('',['filter'=>'session'],function($routes){
+    $routes->group('cantina',function($routes){
+        $routes->get('/','CantinaController::index');
+    });
+});
+
 
 //Routes pour l'administration
 $routes->group('admin', ['namespace' => 'App\Controllers\Admin', 'filter' => 'group:admin'], function ($routes) {
