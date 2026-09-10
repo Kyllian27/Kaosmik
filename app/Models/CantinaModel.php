@@ -2,27 +2,17 @@
 
 namespace App\Models;
 
-use App\Entities\HeroModel;
 use CodeIgniter\Model;
 
-class HeroModelModel extends Model
+class CantinaModel extends Model
 {
-    protected $table            = 'hero_models';
+    protected $table            = 'cantinas';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
-    protected $returnType       = HeroModel::class;
+    protected $returnType       = cantina::class;
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = [
-        'specialization_id',
-        'name',
-        'description',
-        'power_min',
-        'power_max',
-        'cost_credits_max',
-        'cost_credits_min',
-        'level_required'
-    ];
+    protected $allowedFields    = ['player_id','hero_model_id','rarity_id','name','power','cost_credit'];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;
@@ -31,7 +21,7 @@ class HeroModelModel extends Model
     protected array $castHandlers = [];
 
     // Dates
-    protected $useTimestamps = true;
+    protected $useTimestamps = false;
     protected $dateFormat    = 'datetime';
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';
@@ -53,11 +43,4 @@ class HeroModelModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
-
-    public function getRandom(int $playerlevel = 1){
-        return $this->where('level_required<=',$playerlevel)
-            ->orderby('RAND()')->first();
-
-    }
-
 }

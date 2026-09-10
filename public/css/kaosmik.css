@@ -1,0 +1,247 @@
+/* ==========================================================================
+   KAOSMIK CUSTOM THEME FOR TABLER & BOOTSTRAP 5
+   Thème dynamique basé sur les variables CSS globales
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. VARIABLE SOURCE (Modifier la couleur unique ici)
+   -------------------------------------------------------------------------- */
+:root {
+  --tblr-kaosmik: #8e44ad;
+  --tblr-kaosmik-rgb: 142, 68, 173;
+}
+
+/* --------------------------------------------------------------------------
+   2. BOUTONS (.btn-kaosmik, .btn-outline-kaosmik, .btn-ghost-kaosmik)
+   -------------------------------------------------------------------------- */
+.btn-kaosmik {
+  --tblr-btn-color: #ffffff;
+  --tblr-btn-bg: var(--tblr-kaosmik);
+  --tblr-btn-border-color: var(--tblr-kaosmik);
+  --tblr-btn-hover-color: #ffffff;
+  --tblr-btn-hover-bg: var(--tblr-kaosmik);
+  --tblr-btn-hover-border-color: var(--tblr-kaosmik);
+  --tblr-btn-focus-shadow-rgb: var(--tblr-kaosmik-rgb);
+  --tblr-btn-active-color: #ffffff;
+  --tblr-btn-active-bg: var(--tblr-kaosmik);
+  --tblr-btn-active-border-color: var(--tblr-kaosmik);
+
+  color: var(--tblr-btn-color);
+  background-color: var(--tblr-btn-bg);
+  border-color: var(--tblr-btn-border-color);
+  filter: contrast(1);
+}
+
+.btn-kaosmik:hover {
+  filter: brightness(0.9);
+}
+
+.btn-outline-kaosmik {
+  --tblr-btn-color: var(--tblr-kaosmik);
+  --tblr-btn-border-color: var(--tblr-kaosmik);
+  --tblr-btn-hover-color: #ffffff;
+  --tblr-btn-hover-bg: var(--tblr-kaosmik);
+  --tblr-btn-hover-border-color: var(--tblr-kaosmik);
+  --tblr-btn-focus-shadow-rgb: var(--tblr-kaosmik-rgb);
+
+  color: var(--tblr-btn-color);
+  border-color: var(--tblr-btn-border-color);
+  background-color: transparent;
+}
+
+.btn-ghost-kaosmik {
+  color: var(--tblr-kaosmik);
+  background-color: transparent;
+  border-color: transparent;
+}
+.btn-ghost-kaosmik:hover,
+.btn-ghost-kaosmik:focus {
+  color: var(--tblr-kaosmik);
+  background-color: rgba(var(--tblr-kaosmik-rgb), 0.1);
+  border-color: transparent;
+}
+
+/* --------------------------------------------------------------------------
+   3. BADGES & ALERTE (.badge-kaosmik, .alert-kaosmik)
+   -------------------------------------------------------------------------- */
+.badge-kaosmik {
+  background-color: var(--tblr-kaosmik);
+  color: #ffffff;
+}
+
+.badge-outline-kaosmik {
+  color: var(--tblr-kaosmik);
+  border: 1px solid var(--tblr-kaosmik);
+  background-color: transparent;
+}
+
+.alert-kaosmik {
+  color: var(--tblr-kaosmik);
+  background-color: rgba(var(--tblr-kaosmik-rgb), 0.1);
+  border-color: rgba(var(--tblr-kaosmik-rgb), 0.25);
+}
+.alert-kaosmik .alert-title {
+  color: var(--tblr-kaosmik);
+}
+
+/* --------------------------------------------------------------------------
+   4. CARTES (.card-status-*, .card-border-kaosmik)
+   -------------------------------------------------------------------------- */
+.card-status-top-kaosmik,
+.card-status-start-kaosmik,
+.card-status-bottom-kaosmik {
+  background-color: var(--tblr-kaosmik);
+}
+
+.card-border-kaosmik {
+  border-color: var(--tblr-kaosmik) !important;
+}
+
+/* --------------------------------------------------------------------------
+   5. UTILITAIRES DE TEXTE, FONDS ET BORDURES
+   -------------------------------------------------------------------------- */
+.text-kaosmik {
+  color: var(--tblr-kaosmik) !important;
+}
+
+.bg-kaosmik {
+  background-color: var(--tblr-kaosmik) !important;
+  color: #ffffff !important;
+}
+
+.bg-kaosmik-lt {
+  background-color: rgba(var(--tblr-kaosmik-rgb), 0.1) !important;
+  color: var(--tblr-kaosmik) !important;
+}
+
+.border-kaosmik {
+  border-color: var(--tblr-kaosmik) !important;
+}
+
+/* --------------------------------------------------------------------------
+   6. FORMULAIRES & INTERACTION
+   -------------------------------------------------------------------------- */
+.form-control-kaosmik:focus,
+.form-select-kaosmik:focus {
+  border-color: var(--tblr-kaosmik);
+  box-shadow: 0 0 0 0.25rem rgba(var(--tblr-kaosmik-rgb), 0.25);
+}
+
+.form-check-input-kaosmik:checked {
+  background-color: var(--tblr-kaosmik);
+  border-color: var(--tblr-kaosmik);
+}
+
+.form-check-input-kaosmik:focus {
+  border-color: var(--tblr-kaosmik);
+  box-shadow: 0 0 0 0.25rem rgba(var(--tblr-kaosmik-rgb), 0.25);
+}
+
+.form-range-kaosmik::-webkit-slider-thumb {
+  background-color: var(--tblr-kaosmik);
+}
+.form-range-kaosmik::-moz-range-thumb {
+  background-color: var(--tblr-kaosmik);
+}
+
+/* --------------------------------------------------------------------------
+   7. NAVIGATION, PAGINATION & ACCORDÉONS
+   -------------------------------------------------------------------------- */
+.nav-pills .nav-link.active-kaosmik,
+.nav-pills .nav-link.active.bg-kaosmik {
+  background-color: var(--tblr-kaosmik);
+  color: #ffffff;
+}
+
+.nav-tabs .nav-link.active-kaosmik {
+  border-bottom-color: var(--tblr-kaosmik);
+  color: var(--tblr-kaosmik);
+}
+
+.page-item.active .page-link-kaosmik,
+.page-link-kaosmik.active {
+  background-color: var(--tblr-kaosmik);
+  border-color: var(--tblr-kaosmik);
+  color: #ffffff;
+}
+
+.accordion-button-kaosmik:not(.collapsed) {
+  color: var(--tblr-kaosmik);
+  background-color: rgba(var(--tblr-kaosmik-rgb), 0.1);
+}
+
+/* --------------------------------------------------------------------------
+   8. PROGRESSION, SPINNERS & LIST GROUPS
+   -------------------------------------------------------------------------- */
+.progress-bar-kaosmik {
+  background-color: var(--tblr-kaosmik);
+}
+
+.spinner-border-kaosmik,
+.spinner-grow-kaosmik {
+  color: var(--tblr-kaosmik);
+}
+
+.list-group-item-kaosmik {
+  color: var(--tblr-kaosmik);
+}
+.list-group-item-kaosmik.active {
+  background-color: var(--tblr-kaosmik);
+  border-color: var(--tblr-kaosmik);
+  color: #ffffff;
+}
+
+/* --------------------------------------------------------------------------
+   9. DROPDOWNS & MENUS
+   -------------------------------------------------------------------------- */
+.dropdown-item.active-kaosmik,
+.dropdown-item:active {
+  background-color: var(--tblr-kaosmik);
+  color: #ffffff;
+}
+
+/* --------------------------------------------------------------------------
+   10. MODALES, OFFCANVAS & TABLES
+   -------------------------------------------------------------------------- */
+.modal-header-kaosmik {
+  background-color: var(--tblr-kaosmik);
+  color: #ffffff;
+}
+
+.modal-content-kaosmik {
+  border-top: 4px solid var(--tblr-kaosmik);
+}
+
+.table-kaosmik {
+  --tblr-table-color: var(--tblr-kaosmik);
+  --tblr-table-bg: rgba(var(--tblr-kaosmik-rgb), 0.08);
+  --tblr-table-border-color: rgba(var(--tblr-kaosmik-rgb), 0.2);
+}
+
+/* --------------------------------------------------------------------------
+   11. TOOLTIPS & POPOVERS
+   -------------------------------------------------------------------------- */
+.tooltip-kaosmik .tooltip-inner {
+  background-color: var(--tblr-kaosmik);
+  color: #ffffff;
+}
+.tooltip-kaosmik.bs-tooltip-top .tooltip-arrow::before {
+  border-top-color: var(--tblr-kaosmik);
+}
+.tooltip-kaosmik.bs-tooltip-bottom .tooltip-arrow::before {
+  border-bottom-color: var(--tblr-kaosmik);
+}
+.tooltip-kaosmik.bs-tooltip-start .tooltip-arrow::before {
+  border-left-color: var(--tblr-kaosmik);
+}
+.tooltip-kaosmik.bs-tooltip-end .tooltip-arrow::before {
+  border-right-color: var(--tblr-kaosmik);
+}
+
+.popover-kaosmik {
+  border-color: var(--tblr-kaosmik);
+}
+.popover-kaosmik .popover-header {
+  background-color: var(--tblr-kaosmik);
+  color: #ffffff;
+}

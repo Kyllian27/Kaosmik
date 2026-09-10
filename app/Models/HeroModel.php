@@ -2,27 +2,18 @@
 
 namespace App\Models;
 
-use App\Entities\HeroModel;
+use App\Entities\Hero;
 use CodeIgniter\Model;
 
-class HeroModelModel extends Model
+class HeroModel extends Model
 {
-    protected $table            = 'hero_models';
+    protected $table            = 'heroes';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
-    protected $returnType       = HeroModel::class;
+    protected $returnType       = Hero::class;
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = [
-        'specialization_id',
-        'name',
-        'description',
-        'power_min',
-        'power_max',
-        'cost_credits_max',
-        'cost_credits_min',
-        'level_required'
-    ];
+    protected $allowedFields    = ['player_id','hero_model_id','rarity_id','name','power','cost_credit','stamina_current','stamina_max','last_stamina_update'];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;
@@ -53,11 +44,4 @@ class HeroModelModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
-
-    public function getRandom(int $playerlevel = 1){
-        return $this->where('level_required<=',$playerlevel)
-            ->orderby('RAND()')->first();
-
-    }
-
 }
