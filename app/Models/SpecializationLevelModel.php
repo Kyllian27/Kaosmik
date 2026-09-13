@@ -4,7 +4,7 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class SpecializationModel extends Model
+class SpecializationLevelModel extends Model
 {
     protected $table            = 'specializations';
     protected $primaryKey       = 'id';
@@ -12,7 +12,7 @@ class SpecializationModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['name', 'description', 'created_at', 'updated_at'];
+    protected $allowedFields    = ['name', 'description'];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;

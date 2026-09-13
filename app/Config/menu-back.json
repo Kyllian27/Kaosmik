@@ -18,9 +18,9 @@
     "class" :""
   },
   "specialization_level" : {
-    "title": "",
-    "url": "",
-    "icon":"",
+    "title": "Specialization de level",
+    "url": "/admin/specialization-level",
+    "icon":"<i class=\"fa-solid fa-user-shield\"></i>",
     "class": ""
   },
 "hero_model" : {

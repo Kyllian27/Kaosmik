@@ -5,7 +5,7 @@ namespace App\Controllers\Admin;
 use App\Controllers\BaseController;
 use App\Entities\HeroModel;
 use App\Models\HeroModelModel;
-use App\Models\SpecializationModel;
+use App\Models\SpecializationLevelModel;
 use CodeIgniter\HTTP\ResponseInterface;
 
 class HeroModelController extends BaseController
@@ -21,7 +21,7 @@ class HeroModelController extends BaseController
     public function __construct()
     {
         $this->heroModelModel      = model('HeroModelModel');
-        $this->specializationModel = model( 'SpecializationModel');
+        $this->specializationModel = model( 'SpecializationLevelModel');
     }
 
     public function index()
