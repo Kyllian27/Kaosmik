@@ -2,7 +2,7 @@
 
 namespace App\Entities;
 
-use App\Models\SpecializationModel;
+use App\Models\SpecializationLevelModel;
 use CodeIgniter\Entity\Entity;
 
 class HeroModel extends Entity
@@ -24,7 +24,7 @@ class HeroModel extends Entity
     public function getSpecialization(){
         if($this->specialization === null&& ($this->specialization_id)){
 
-        $sm = model(SpecializationModel::class);
+        $sm = model(SpecializationLevelModel::class);
         $this->specializations = $sm->where('id',$this->specialization_id)->first();
         }
         return $this->specializations;
