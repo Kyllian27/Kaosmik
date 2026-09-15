@@ -27,7 +27,7 @@
                     <tbody>
                     <?php foreach ($specializationLevels as $level) : ?>
                         <?php
-                        // Permet de lire que ce soit un tableau ou un objet Entity
+
                         $id = is_array($level) ? ($level['id'] ?? '') : ($level->id ?? '');
                         $name = is_array($level) ? ($level['name'] ?? '') : ($level->name ?? '');
                         $description = is_array($level) ? ($level['description'] ?? '') : ($level->description ?? '');

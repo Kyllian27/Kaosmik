@@ -7,7 +7,7 @@
    1. VARIABLE SOURCE (Modifier la couleur unique ici)
    -------------------------------------------------------------------------- */
 :root {
-  --tblr-kaosmik: #8e44ad;
+  --tblr-kaosmik: #542365;
   --tblr-kaosmik-rgb: 142, 68, 173;
 }
 
@@ -244,4 +244,116 @@
 .popover-kaosmik .popover-header {
   background-color: var(--tblr-kaosmik);
   color: #ffffff;
+}
+
+/* --------------------------------------------------------------------------
+   12. NAVBAR & NAVIGATION
+   -------------------------------------------------------------------------- */
+/* Lien actif dans la navbar */
+.navbar-kaosmik .nav-item.active .nav-link,
+.navbar-kaosmik .nav-link.active {
+  color: var(--tblr-kaosmik) !important;
+  font-weight: 600;
+}
+
+/* Liseré inférieur sous le lien actif (style par défaut de Tabler) */
+.navbar-kaosmik .navbar-expand-md .navbar-nav .nav-link.active,
+.navbar-kaosmik .navbar-expand-lg .navbar-nav .nav-link.active {
+  border-bottom-color: var(--tblr-kaosmik) !important;
+}
+
+/* Effet au survol des liens */
+.navbar-kaosmik .nav-link:hover {
+  color: var(--tblr-kaosmik) !important;
+}
+
+/* Navbar complète à fond plein Kaosmik (version foncée/couleur) */
+.navbar-kaosmik {
+  background-color: var(--tblr-kaosmik) !important;
+  color: #ffffff !important;
+}
+
+.navbar-kaosmik .nav-link,
+.navbar-kaosmik .navbar-brand {
+  color: #ffffff !important;
+}
+
+.navbar-kaosmik .nav-link:hover,
+.navbar-kaosmik .nav-item.active .nav-link {
+  color: #ffffff !important;
+  opacity: 0.85;
+}
+
+/* ==========================================================================
+   FOND COSMIQUE AVEC VARIATION DE TAILLES D'ÉTOILES
+   ========================================================================== */
+
+.bg-cosmic {
+  background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%),
+  radial-gradient(circle at 20% 20%, rgba(142, 68, 173, 0.35) 0%, transparent 40%),
+  radial-gradient(circle at 80% 80%, rgba(41, 128, 185, 0.3) 0%, transparent 50%);
+  background-attachment: fixed;
+  color: #ffffff;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.bg-cosmic::before,
+.bg-cosmic::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* 1. Premier calque : Micro-poussières, petites et moyennes étoiles */
+.bg-cosmic::before {
+  background-image:
+    /* Micro-étoiles (0.8px) - Fond lointain */
+          radial-gradient(0.8px 0.8px at 25px 40px, rgba(255, 255, 255, 0.6), rgba(0,0,0,0)),
+          radial-gradient(0.8px 0.8px at 140px 190px, rgba(255, 255, 255, 0.5), rgba(0,0,0,0)),
+          radial-gradient(0.8px 0.8px at 320px 110px, rgba(255, 255, 255, 0.6), rgba(0,0,0,0)),
+
+            /* Petites étoiles (1.2px) */
+          radial-gradient(1.2px 1.2px at 80px 120px, #ffffff, rgba(0,0,0,0)),
+          radial-gradient(1.2px 1.2px at 220px 250px, rgba(255, 255, 255, 0.8), rgba(0,0,0,0)),
+          radial-gradient(1.2px 1.2px at 410px 60px, #ffffff, rgba(0,0,0,0)),
+
+            /* Étoiles moyennes (2px) */
+          radial-gradient(2px 2px at 150px 30px, #ffffff, rgba(0,0,0,0)),
+          radial-gradient(2px 2px at 290px 210px, rgba(224, 170, 255, 0.9), rgba(0,0,0,0)),
+          radial-gradient(2px 2px at 460px 170px, #ffffff, rgba(0,0,0,0));
+
+  background-size: 500px 350px;
+  opacity: 0.75;
+}
+
+/* 2. Deuxième calque : Grandes étoiles et éclipses/lueurs (4px) */
+.bg-cosmic::after {
+  background-image:
+    /* Étoiles soutenues (2.8px) */
+          radial-gradient(2.8px 2.8px at 60px 180px, #e0aaff, rgba(0,0,0,0)),
+          radial-gradient(2.8px 2.8px at 380px 90px, #9d4edd, rgba(0,0,0,0)),
+
+            /* Grosses étoiles claires avec lueur autour (4px) */
+          radial-gradient(4px 4px at 190px 80px, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.2) 60%, rgba(0,0,0,0)),
+          radial-gradient(4.5px 4.5px at 480px 230px, rgba(199, 125, 255, 1), rgba(142, 68, 173, 0.3) 70%, rgba(0,0,0,0));
+
+  background-size: 650px 400px;
+  opacity: 0.85;
+  animation: cosmicGlow 3.5s ease-in-out infinite alternate;
+}
+
+@keyframes cosmicGlow {
+  from { opacity: 0.6; transform: scale(0.99); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.bg-cosmic > * {
+  position: relative;
+  z-index: 1;
 }
