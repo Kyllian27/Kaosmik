@@ -4,29 +4,29 @@
     <base href="<?= base_url(); ?>">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title><?= $title ?? "Zoologik" ?></title>
+    <title><?= $title ?? "kaosmik" ?></title>
     <meta name="description" content="<?= $description ?? "" ?>" >
     <meta name="author" content="<?= $author ?? "" ?>" >
-    <meta name="keyword" content="<?= $keyword ?? "" ?>" >
+    <meta name="keywords" content="<?= $keyword ?? "" ?>" >
 
     <!-- FAVICON -->
-    <link rel="icon" type="image/png" href="<?= base_url("/assets/img/favicon/favicon-96x96.png"); ?>" sizes="96x96" />
-    <link rel="icon" type="image/svg+xml" href="<?= base_url("/assets/img/favicon/favicon.svg"); ?>" />
-    <link rel="shortcut icon" href="<?= base_url("/assets/img/favicon/favicon.ico"); ?>" />
-    <link rel="apple-touch-icon" sizes="180x180" href="<?= base_url("/assets/img/favicon/apple-touch-icon.png"); ?>" />
-    <meta name="apple-mobile-web-app-title" content="KaosmiK" />
-    <link rel="manifest" href="<?= base_url("/assets/img/favicon/site.webmanifest"); ?>" />
+    <link rel="icon" type="image/png" href="<?= base_url("assets/img/favicon/favicon-96x96.png"); ?>" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="<?= base_url("assets/img/favicon/favicon.svg"); ?>" />
+    <link rel="shortcut icon" href="<?= base_url("assets/img/favicon/favicon.ico"); ?>" />
+    <link rel="apple-touch-icon" sizes="180x180" href="<?= base_url("assets/img/favicon/apple-touch-icon.png"); ?>" />
+    <meta name="apple-mobile-web-app-title" content="Kaosmik" />
+    <link rel="manifest" href="<?= base_url("assets/img/favicon/site.webmanifest"); ?>" />
 
     <!-- THEME TABLER -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/core@latest/dist/css/tabler.min.css">
     <script src="https://cdn.jsdelivr.net/npm/@tabler/core@latest/dist/js/tabler.min.js"></script>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="<?= base_url('/css/style.css'); ?>">
-    <!-- JQUEYR -->
-    <script src="https://cdn.jsdelivr.net/npm/jquery@4.0.0/dist/jquery.min.js"></script>
+    <link rel="stylesheet" href="<?= base_url('css/kaosmik.css'); ?>">
+    <!-- JQUERY -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
     <!-- JS -->
-    <script src="<?= base_url('/js/script.js'); ?>"></script>
+    <script src="<?= base_url('js/script.js'); ?>"></script>
 
     <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -34,8 +34,8 @@
     <!-- SWAL2 -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- TOASTR -->
-    <script src="<?= base_url('/js/toastr.min.js'); ?>"></script>
-    <link rel="stylesheet" href="<?= base_url('/css/toastr.min.css'); ?>" />
+    <script src="<?= base_url('js/toastr.min.js'); ?>"></script>
+    <link rel="stylesheet" href="<?= base_url('css/toastr.min.css'); ?>" />
 
     <!-- BOOTSTRAP TABLE -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-table@1.27.3/dist/bootstrap-table.min.css">
@@ -47,7 +47,7 @@
     <!-- CHARTJS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
-<body>
+<body class="bg-cosmic">
 <div class="page">
     <?php if (isset($menus)): ?>
         <?= view("template/{$layout}/menu"); ?>

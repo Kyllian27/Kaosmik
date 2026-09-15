@@ -23,6 +23,10 @@
                         <input type="text" name="name" class="form-control" placeholder="Nom" title="Nom" value="<?= isset($hm) ? $hm->name : ''?>" required>
                     </div>
                 </div>
+                <div class="mb-3 d-flex">
+                    <img class="avatar me-3" src="<?= ($hm->getImage()) ? $hm->getImage()->getUrl() : base_url('/assets/img/no-img.png'); ?>">
+                    <input type="file" name="image" class="form-control" placeholder="Image" title="Image">
+                </div>
                 <div class="mb-3">
                     <label class="form-label">Description</label>
                     <textarea class="form-control" name="description" placeholder="Description"><?= isset($hm) ? esc($hm->description) : '';?></textarea>

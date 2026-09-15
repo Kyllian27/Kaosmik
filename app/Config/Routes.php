@@ -17,6 +17,7 @@ $routes->get('logout', [AuthController::class, 'logoutAction']);
 $routes->group('', ['filter' => 'session'], function ($routes) {
     $routes->group('cantina', function ($routes) {
         $routes->get('/', 'CantinaController::index');
+        $routes->post('refresh', 'CantinaController::refresh');
     });
 });
 

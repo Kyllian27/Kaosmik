@@ -1,54 +1,55 @@
 <div class="row align-items-center">
     <div class="col">
-        <div class="page-title mb-3">Liste des modèle des héros</div>
-        <div class="col-auto d-print-none">
-            <div class="btn-list">
-                <a href="<?= base_url('/admin/hero-model/new') ?>" class="btn btn-primary btn-sm">
-                    <i class="fa-solid fa-plus me-2"></i> Créer un nouveau modèle
-                </a>
-            </div>
+        <div class="page-title">Liste des modèles pour les héros</div>
+    </div>
+    <div class="col-auto ms-auto d-print-none">
+        <div class="btn-list">
+            <a href="<?= base_url('/admin/hero-model/new'); ?>" class="btn btn-primary btn-sm">
+                <i class="fa-solid fa-plus me-2"></i> Créer un nouveau modèle
+            </a>
         </div>
     </div>
 </div>
 <div class="row mt-3">
     <div class="col">
-        <div class="card h-100">
-            <div class="card-body">
-                <table class="table table-responsive table-hover table-striped table-sm " data-toggle="table"
-                       data-height="460" data-pagination="true" data-page-list="[10, 25, 50, 100, 200, All]">
+        <div class="card">
+            <div class="card-body table-responsive">
+                <table class="table table-hover table-striped"
+                       data-toggle="table"
+                       data-pagination="true"
+                       data-page-size="15"
+                       data-sortable="true">
                     <thead>
                     <tr>
-                        <th>#</th>
-                        <th>Nom</th>
-                        <th>specialisation</th>
-                        <th>Puissance (min-max)</th>
-                        <th>Coût (min-max)</th>
-                        <th>Niveau Min</th>
-                        <th >Actions</th>
+                        <th data-sortable="true">#</th>
+                        <th data-sortable="true">Nom</th>
+                        <th data-sortable="true">Spécialisation</th>
+                        <th data-sortable="false">Puissance (min/max)</th>
+                        <th data-sortable="false">Coût (min/max)</th>
+                        <th data-sortable="true">Niveau Min</th>
+                        <th data-sortable="false">Actions</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <?php foreach ($hero_models as $hero_model) : ?>
+                    <?php foreach ($heromodels as $hm) : ?>
                         <tr>
-                            <td><?= $hero_model->id ?></td>
-                            <td><?= $hero_model->name ?></td>
-                            <td><?= $hero_model->getSpecialization()['name'];?></td>
-                            <td><?= $hero_model->power_min.' - '.$hero_model->power_max ?></td>
-                            <td><?= $hero_model->cost_credits_min.' - '.$hero_model->cost_credits_max ?></td>
-                            <td><?= $hero_model->level_required ?></td>
-                            <td><?= form_open('/admin/hero-model/delete')?> <button type="submit" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash-can"></i></button>
-                            <a href="<?=base_url('/admin/hero-model/edit/'.$hero_model->id)?>"class="btn btn-warning btn-sm"><i class="fa-solid fa-pen"></i>
-                                <?= form_hidden('id', $hero_model->id)?>
-                                <?= form_close() ?></a>
-                                </a>
+                            <td><?= $hm->id; ?></td>
+                            <td><?= $hm->name; ?></td>
+                            <td><?= $hm->getSpecialization()['name']; ?></td>
+                            <td><?= $hm->power_min; ?> / <?= $hm->power_max; ?></td>
+                            <td><?= $hm->cost_credits_min; ?> / <?= $hm->cost_credits_max; ?></td>
+                            <td><?= $hm->level_required; ?></td>
+                            <td>
+                                <a href="<?= base_url('/admin/hero-model/edit/' . $hm->id); ?>" class="btn btn-warning btn-sm"><i class="fa-solid fa-pen"></i></a>
+                                <?php if($hm->id != 1) : ?>
+                                    <a href="<?= base_url('/admin/hero-model/delete/' . $hm->id); ?>" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></a>
+                                <?php endif; ?>
                             </td>
-
                         </tr>
                     <?php endforeach; ?>
                     </tbody>
                 </table>
             </div>
         </div>
-
     </div>
 </div>
