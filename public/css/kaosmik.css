@@ -296,6 +296,7 @@
   color: #ffffff;
   position: relative;
   overflow-x: hidden;
+  z-index: 0;
 }
 
 .bg-cosmic::before,
@@ -307,7 +308,7 @@
   width: 100%;
   height: 100%;
   pointer-events: none;
-  z-index: 0;
+  z-index: 1;
 }
 
 /* 1. Premier calque : Micro-poussières, petites et moyennes étoiles */
@@ -351,9 +352,4 @@
 @keyframes cosmicGlow {
   from { opacity: 0.6; transform: scale(0.99); }
   to { opacity: 1; transform: scale(1); }
-}
-
-.bg-cosmic > * {
-  position: relative;
-  z-index: 1;
 }

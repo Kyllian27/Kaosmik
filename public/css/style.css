@@ -1,1 +1,6 @@
-/*silence is gold*/
+/* Annule le flex: 0 0 50% de Tabler sur les boutons de pagination */
+.bootstrap-table .pagination .page-item.page-next,
+.bootstrap-table .pagination .page-item.page-prev {
+    flex: none !important;
+    text-align: inherit !important;
+}

@@ -61,5 +61,6 @@ class Hero extends Entity
             $rarityModel = model(RarityLevelModel::Class);
             $this->rarity = $rarityModel->find($this->attributes['rarity_id']);
         }
+        return $this->rarity;
     }
 }

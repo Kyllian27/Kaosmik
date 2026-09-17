@@ -18,4 +18,6 @@
             <?= view_cell('heroCell', ['character' => $hero, 'context' => 'cantina']); ?>
         </div>
     <?php endforeach; ?>
+        </div>
+    </div>
 </div>

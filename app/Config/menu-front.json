@@ -1,8 +1,13 @@
 {
-  "employe" : {
-    "title" : "Employe",
-    "url" : "/employe",
-    "icon" : "<i class=\"fa-solid fa-user\"></i>",
+  "cantina": {
+    "title": "Recruter",
+    "url": "/cantina",
+    "icon": "<i class=\"fa-solid fa-user-astronaut\"></i>",
     "class": ""
+  },
+  "crew": {
+    "title": "Equipage",
+    "url": "/equipage",
+    "icon": "<i class=\"fa-solid fa-user\"></i>"
   }
 }
