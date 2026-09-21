@@ -39,8 +39,11 @@
 
     <?php if (isset($context) && $context === 'cantina'): ?>
         <div class="card-footer p-2 mt-auto border-top-0 bg-transparent">
+
             <a href="<?= base_url('cantina/recruit/' . $character->id) ?>"
-               class="btn w-100 d-flex justify-content-between align-items-center py-2 px-3 fw-bold text-white rounded"
+               class="btn w-100 d-flex justify-content-between align-items-center py-2 px-3 fw-bold text-white rounded btn-recruit"
+               data-name="<?= esc($character->name) ?>"
+               data-cost="<?= esc($character->getCostCredit()) ?>"
                style="background-color: #6f42c1; border: 1px solid #8957e5;"
                onmouseover="this.style.backgroundColor='#b197fc'; this.style.color='#1a0933';"
                onmouseout="this.style.backgroundColor='#6f42c1'; this.style.color='#ffffff';">
