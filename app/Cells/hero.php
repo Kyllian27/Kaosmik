@@ -35,17 +35,21 @@
         <?php endif; ?>
     </div>
 
-    <?php if (isset($context) && $context === 'cantina') : ?>
+    <?php if ($context == 'cantina') : ?>
+    <?php if (auth()->user()->getPlayer()->isFleetFull()):?>
+            <span class="mb-1 badge texte-bg-danger">Equipage complet</span>
+    <?php endif; ?>
         <?= form_open('cantina/recruit/' . $character->id); ?>
         <div class="d-grid">
             <button type="submit" class="btn btn-kaosmik"
-                    <?= ($character->cost_credit > auth()->user()->getPlayer()->credits) ? 'disabled' : ''; ?>
+                    <?= ($character->cost_credit > auth()->user()->getPlayer()->credits)
+                            || (auth()->user()->getplayer()->isFleetFull())? 'disabled' : ''; ?>
             >
                 Recruter ( <i class="fa-solid fa-cent-sign"></i><?= esc($character->cost_credit); ?> )
             </button>
         </div>
         <?= form_close(); ?>
-    <?php elseif (isset($context) && $context === 'equipage') : ?>
+    <?php elseif ( $context == 'equipage') : ?>
         <?= form_open('equipage/sell/' . $character->id, ['class'=> 'js-form-sell']); ?>
         <div class="d-grid">
             <button type="submit" class="btn btn-danger" data-hero-name="<?=$character->name; ?>">

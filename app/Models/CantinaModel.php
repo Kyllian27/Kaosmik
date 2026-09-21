@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Entities\cantina;
+use App\Entities\Cantina;
 use CodeIgniter\Model;
 
 class CantinaModel extends Model
@@ -12,17 +12,10 @@ class CantinaModel extends Model
     protected $useAutoIncrement = true;
     protected $returnType       = Cantina::class;
     protected $useSoftDeletes   = false;
-    protected $protectFields    = true;
     protected $allowedFields    = ['player_id','hero_model_id','rarity_id','name','power','cost_credit'];
 
-    protected bool $allowEmptyInserts = false;
-    protected bool $updateOnlyChanged = true;
-
-    protected array $casts = [];
-    protected array $castHandlers = [];
-
     // Dates
-    protected $useTimestamps = false;
+    protected $useTimestamps = true;
     protected $dateFormat    = 'datetime';
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';

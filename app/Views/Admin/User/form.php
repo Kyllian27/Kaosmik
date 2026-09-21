@@ -46,12 +46,15 @@
             </div>
         </div>
         <?php if (isset($user) && $user->getPlayer() !== null)  : ?>
-        <div class="card">
+        <div class="card mb-3">
             <div class="card-header">Informations joueur(s)</div>
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-6">
-                        AVATAR
+                        <a href="/cantina/recruit/1">
+                            <img src="/assets/img/logo-150.png" class="img-fluid rounded" alt="banniere du User"
+
+                        </a>
                     </div>
                     <div class="col-md-6">
                         <div class="row mb-3">
@@ -89,6 +92,22 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header">L'equipage</div>
+            <div class="card-body">
+                <div class="row row-cols-2 row-cols-md-4 g-3">
+                    <?php if (count($user->getPlayer()->getHeroes())> 0) : ?>
+                    <?php foreach ($user->getPlayer()->getHeroes() as $hero) : ?>
+                    <div class="col">
+                    <?= view_cell('heroCell',['character' => $hero]) ?>
+                    </div>
+                    <?php endforeach; ?>
+                    <?php else: ?>
+                        L'equipage est tristement vide'
+                    <?php endif ?>;
                 </div>
             </div>
         </div>
