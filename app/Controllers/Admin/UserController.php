@@ -13,10 +13,10 @@ namespace App\Controllers\Admin;
  * On importe les classes dont on a besoin dans ce fichier.
  * Sans ces lignes, PHP ne saurait pas où trouver "BaseController", "Player", etc.
  */
+
 use App\Controllers\BaseController;
 use App\Entities\Player;
 use App\Entities\User;
-use CodeIgniter\HTTP\ResponseInterface;
 
 /**
  * CONTRÔLEUR ADMIN - GESTION DES UTILISATEURS
@@ -95,9 +95,9 @@ class UserController extends BaseController
     /**
      * EDIT - FORMULAIRE DE MODIFICATION
      *
-     * Affiche le formulaire prérempli pour modifier un utilisateur existant.
+     * Affiche le formulaire pré-rempli pour modifier un utilisateur existant.
      * L'argument $id correspond à l'identifiant de l'utilisateur dans l'URL
-     * (ex : /admin/user/edit/5 → $id = 5).
+     * (ex: /admin/user/edit/5 → $id = 5).
      *
      * find($id) exécute un SELECT WHERE id = $id et retourne une entité User
      * ou null si aucun enregistrement n'est trouvé.
@@ -129,7 +129,7 @@ class UserController extends BaseController
      * UPDATE - TRAITEMENT DE LA MODIFICATION
      *
      * Reçoit et traite les données du formulaire de modification (méthode POST).
-     * Cette méthode suit un schéma classique : validation → récupération → mise à jour.
+     * Cette méthode suit un pattern classique de validation → récupération → mise à jour.
      *
      * Étapes :
      *   1. Récupération des données POST
@@ -171,8 +171,8 @@ class UserController extends BaseController
             return $this->redirect('/admin/user');
         }
 
-        // NORMALISATION DU CHAMP "active" (case à cocher HTML)
-        // Une case à cocher HTML n'envoie rien lorsqu'elle est décochée.
+        // NORMALISATION DU CHAMP "active" (checkbox HTML)
+        // Une checkbox HTML n'envoie rien quand elle est décochée.
         // Si elle est cochée, elle envoie la valeur "on".
         // On convertit ce comportement en 1 (actif) ou 0 (inactif) pour la BDD.
         if (isset($data['active']) && $data['active'] == 'on') {
@@ -199,7 +199,7 @@ class UserController extends BaseController
         }
 
         // RETOUR UTILISATEUR : message de succès + redirection
-        $this->success($user->username . " a bien été modifié.");
+        $this->success($user->username . " à bien été modifié.");
         return $this->redirect('/admin/user/edit/' . $user_id);
     }
 
@@ -226,7 +226,6 @@ class UserController extends BaseController
         // ÉTAPE 1 : CRÉATION DE L'UTILISATEUR
         // On instancie une nouvelle entité User (objet vide) et on la remplit avec le formulaire.
         $user = new User();
-        $user->id = "";
         $user->fill($data);
 
         // Shield (le module d'authentification) gère l'email séparément via un système d'identités.

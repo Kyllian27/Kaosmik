@@ -31,7 +31,7 @@ abstract class BaseController extends Controller
     protected array $messages = [];
 
     protected $title = "";
-    protected $title_suffix = "Kaosmik";
+    protected $title_suffix = "Kaosmiꓘ";
     protected $description = "";
     protected $author = "";
     protected $keywords = "";

@@ -4,6 +4,7 @@ namespace App\Entities;
 
 use App\Models\PlayerModel;
 use CodeIgniter\Shield\Entities\User as ShieldUser;
+
 class User extends ShieldUser
 {
     protected ?Player $player = null;
@@ -11,6 +12,7 @@ class User extends ShieldUser
     public function getPlayer(): ?Player {
         if($this->player === null && ($this->attributes['id'])) {
             $playerModel = model(PlayerModel::class);
+
             $this->player = $playerModel->findByUserId($this->attributes['id']);
             if($this->player) {
                 $this->player->setUser($this);
@@ -28,7 +30,8 @@ class User extends ShieldUser
         $mediaModel = model('MediaModel');
         return $mediaModel->getOneMedia('users', $this->id);
     }
-    public function isAdmin(){
+
+    public function isAdmin() {
         return $this->inGroup('admin');
     }
 }

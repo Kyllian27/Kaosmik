@@ -2,18 +2,17 @@
 
 namespace App\Models;
 
-use App\Entities\HeroModel;
 use CodeIgniter\Model;
 
-class HeroModelModel extends Model
+class SpecializationModel extends Model
 {
-    protected $table            = 'hero_models';
+    protected $table            = 'specializations';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
-    protected $returnType       = HeroModel::class;
+    protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['specialization_id','name', 'description','power_min','power_max', 'cost_credits_min', 'cost_credits_max', 'level_required'];
+    protected $allowedFields    = ['name', 'description'];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;
@@ -42,12 +41,19 @@ class HeroModelModel extends Model
     protected $afterUpdate    = [];
     protected $beforeFind     = [];
     protected $afterFind      = [];
-    protected $beforeDelete   = [];
+    protected $beforeDelete   = ['protectDefaultSpecialization'];
     protected $afterDelete    = [];
 
-    public function getRandom(int $playerlevel = 1) {
-        return $this->where('level_required <=', $playerlevel)
-            ->orderBy('RAND()')
-            ->first();
+    /**
+     * Empêche la suppression/modification de la valeur par défaut Recrue (id 1)
+     * @throws \Exception
+     */
+    protected function protectDefaultSpecialization(array $data) {
+
+        $id = $data['id'][0] ?? null;
+        if($id == 1) {
+            throw new \Exception('Interdiction de modifier ou supprimer la spécialisation par défaut (recrue)');
+        }
+        return $data;
     }
 }

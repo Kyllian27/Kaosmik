@@ -20,15 +20,13 @@ use CodeIgniter\Config\BaseService;
  */
 class Services extends BaseService
 {
-    public static function cantina(bool $getShared = true): CantinaService
-    {
-        if ($getShared) {
+
+    public static function cantina(bool $getShared = true) : CantinaService {
+        if($getShared) {
             return static::getSharedInstance('cantina');
         }
-
-        return new \App\Services\CantinaService();
+        return new CantinaService();
     }
-
     /*
      * public static function example($getShared = true)
      * {

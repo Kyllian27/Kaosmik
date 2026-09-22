@@ -25,21 +25,22 @@ class CantinaController extends BaseController
     public function refresh() {
         $cantina = service('cantina');
         $id_player = auth()->user()->getPlayer()->id;
-        //recuperation de la date de creation de la cantina en cours
-        $created_at = $this->cantinaModel->where('id_player', $id_player)->first()->created_at;
-        //calcul du nombre d'heur et du cout
+        //Récupération de la date de création de la cantina en cours
+        $created_at = $this->cantinaModel->where('player_id', $id_player)->first()->created_at;
+        //Récupération du nombre de secondes restantes
         $remainingSeconds = $cantina->getRemainingSeconds($created_at);
+        //Calcul du nombre d'heures et du cout
         $hours = (int) floor($remainingSeconds / 3600);
-        $refreshcost = ($hours + 1) * 10;
-        //verification du sold
-        if(auth()->getplayer()->credit<$refreshcost) {
-            $this->error('pas de assez de flouse.');
+        $refreshCost = ($hours +1) * 10;
+        //Vérification du solde
+        if(auth()->user()->getPlayer()->credits < $refreshCost) {
+            $this->error('Pas assez de crédits.');
             return $this->redirect('/cantina');
         }
-        //sauvegarder le nouveaux solde
-        auth()->user()->getPlayer()->credit = $refreshcost;
-        $PlayerModel = model('PlayerModel');
-        $PlayerModel->save(auth()->user()->getPlayer());
+        //Sauvegarder le nouveau solde
+        auth()->user()->getPlayer()->credits -= $refreshCost;
+        $playerModel = model('PlayerModel');
+        $playerModel->save(auth()->user()->getPlayer());
 
         $cantina->generateOffers(auth()->user()->getPlayer()->id);
         return $this->redirect('/cantina');

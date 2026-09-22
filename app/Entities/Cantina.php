@@ -5,7 +5,6 @@ namespace App\Entities;
 use App\Models\HeroModelModel;
 use App\Models\PlayerModel;
 use App\Models\RarityLevelModel;
-use App\Models\MediaModel;
 use CodeIgniter\Entity\Entity;
 
 class Cantina extends Entity
@@ -36,35 +35,26 @@ class Cantina extends Entity
     protected ?RarityLevel $rarity = null;
 
     public function getPlayer(): ?Player {
-        if ($this->player === null && !empty($this->attributes['player_id'])) {
-            $playerModel = new PlayerModel();
+        if($this->player === null && ($this->attributes['player_id'])) {
+            $playerModel = model(PlayerModel::class);
             $this->player = $playerModel->find($this->attributes['player_id']);
         }
         return $this->player;
     }
 
     public function getHeroModel(): ?HeroModel {
-        if ($this->heroModel === null && !empty($this->attributes['hero_model_id'])) {
-            $heroModel = new HeroModelModel();
+        if($this->heroModel === null && ($this->attributes['hero_model_id'])) {
+            $heroModel = model(HeroModelModel::class);
             $this->heroModel = $heroModel->find($this->attributes['hero_model_id']);
         }
         return $this->heroModel;
     }
 
-    public function getRarity(): ?RarityLevel {
-        if ($this->rarity === null && !empty($this->attributes['rarity_id'])) {
-            $rarityModel = new RarityLevelModel();
+    public function getRarity() : ?RarityLevel {
+        if($this->rarity === null && ($this->attributes['rarity_id'])) {
+            $rarityModel = model(RarityLevelModel::class);
             $this->rarity = $rarityModel->find($this->attributes['rarity_id']);
         }
         return $this->rarity;
-    }
-
-    public function getImage() {
-        $mediaModel = new MediaModel();
-        return $mediaModel->getOneMedia('cantina', $this->attributes['id'] ?? null);
-    }
-
-    public function getCostCredit(): int {
-        return (int) ($this->attributes['cost_credit'] ?? 1);
     }
 }
