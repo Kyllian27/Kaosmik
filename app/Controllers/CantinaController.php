@@ -8,30 +8,46 @@ use CodeIgniter\HTTP\ResponseInterface;
 
 class CantinaController extends BaseController
 {
-    // Charge automatiquement le helper 'form' pour toutes les méthodes de ce contrôleur
-    protected $helpers = ['form'];
-
     protected $cantinaModel;
-
-    public function __construct()
-    {
-        $this->cantinaModel = new CantinaModel();
+    protected $current_menu = 'cantina';
+    public function __construct() {
+        $this->cantinaModel = model('cantinaModel');
     }
-
     public function index()
     {
+        $this->title = "La Cantina";
+        helper('form');
         $cantina = service('cantina');
-
-        $cantinaHeroes = $cantina->getOnGeneratedOffers(auth()->user()->getPlayer()->id);
-
-        return $this->render('front/cantina/index', ['cantinaHeroes' => $cantinaHeroes]);
+        $data = $cantina->getOrGenerateOffers(auth()->user()->getPlayer()->id);
+        return $this->render('front/cantina/index', $data);
     }
 
-    public function refresh()
-    {
+    public function refresh() {
         $cantina = service('cantina');
-        $cantinaHeroes = $cantina->getOnGeneratedOffers(auth()->user()->getPlayer()->id);
+        $id_player = auth()->user()->getPlayer()->id;
+        //recuperation de la date de creation de la cantina en cours
+        $created_at = $this->cantinaModel->where('id_player', $id_player)->first()->created_at;
+        //calcul du nombre d'heur et du cout
+        $remainingSeconds = $cantina->getRemainingSeconds($created_at);
+        $hours = (int) floor($remainingSeconds / 3600);
+        $refreshcost = ($hours + 1) * 10;
+        //verification du sold
+        if(auth()->getplayer()->credit<$refreshcost) {
+            $this->error('pas de assez de flouse.');
+            return $this->redirect('/cantina');
+        }
+        //sauvegarder le nouveaux solde
+        auth()->user()->getPlayer()->credit = $refreshcost;
+        $PlayerModel = model('PlayerModel');
+        $PlayerModel->save(auth()->user()->getPlayer());
 
-        return redirect()->to('/cantina');
+        $cantina->generateOffers(auth()->user()->getPlayer()->id);
+        return $this->redirect('/cantina');
+    }
+
+    public function recruit($id_cantina_hero = null) {
+        $cantina = service('cantina');
+        $cantina->recruit($id_cantina_hero);
+        return $this->redirect('/cantina');
     }
 }

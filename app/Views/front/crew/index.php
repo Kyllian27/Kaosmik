@@ -10,34 +10,33 @@
     <?php
     foreach($logged_user->getPlayer()->getHeroes() as $hero) : ?>
         <div class="col">
-            <?= view_cell('HeroCell', ['character' => $hero, 'context' => 'crew']); ?>
+            <?= view_cell('HeroCell', ['character' => $hero, 'context' => 'equipage']); ?>
         </div>
     <?php endforeach; ?>
-</div>
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        document.querySelectorAll('.js-form-sell').forEach(form => {
-            form.addEventListener('submit', function(e) {
-                e.preventDefault();
-                const btn = this.querySelector('button[type="submit"]');
-                const heroName = btn.dataset.heroName || 'ce mercenaire';
-                Swal.fire({
-                    title : 'Résilier le contrat ?',
-                    text: `Êtes-vous sûr de vouloir licencier ${heroName} ?`,
-                    showCancelButton: true,
-                    confirmButtonText: 'Oui !',
-                    cancelButtonText: 'Annuler',
-                    icon: 'warning',
-                    customClass: {
-                        confirmButton: 'btn btn-kaosmik',
-                        cancelButton: 'btn btn-secondary'
-                    }
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        this.submit();
-                    }
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.js-form-sell').forEach(form => {
+                form.addEventListener('submit', function (e) {
+                    e.preventDefault();
+                    const btn = this.querySelector('button, button[type="submit"]');
+                    const heroName = btn.dataset.heroName || 'ce mercenaire';
+                    Swal.fire({
+                        title: 'Resilier le contrat',
+                        text: `Etes vous sur de vouloir vendre ce mercenaire ${heroName}`,
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Oui!',
+                        cancelButtonText: 'Annuler',
+
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            this.submit();
+                        }
+                    })
                 })
-            });
-        });
-    });
-</script>
+            })
+        })
+    </script>

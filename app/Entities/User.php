@@ -11,7 +11,6 @@ class User extends ShieldUser
     public function getPlayer(): ?Player {
         if($this->player === null && ($this->attributes['id'])) {
             $playerModel = model(PlayerModel::class);
-
             $this->player = $playerModel->findByUserId($this->attributes['id']);
             if($this->player) {
                 $this->player->setUser($this);
@@ -23,5 +22,13 @@ class User extends ShieldUser
     public function setPlayer(Player $player): self {
         $this->player = $player;
         return $this;
+    }
+
+    public function getImage() {
+        $mediaModel = model('MediaModel');
+        return $mediaModel->getOneMedia('users', $this->id);
+    }
+    public function isAdmin(){
+        return $this->inGroup('admin');
     }
 }

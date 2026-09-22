@@ -46,33 +46,22 @@ if (isset($user)) {
             </div>
         </div>
         <?php if (isset($user) && $user->getPlayer() !== null)  : ?>
-            <div class="card">
-                <div class="card-header">Informations joueur(s)</div>
-                <div class="card-body">
-                    <div class="row">
-                        <!-- SECTION AVATAR AVEC ICONE D'AJOUT -->
-                        <div class="col-md-6 d-flex justify-content-center align-items-center">
-                            <div class="position-relative d-inline-block">
-                                <?php
-                                $avatar = $user->getPlayer()->avatar ?? null;
-                                $avatarUrl = $avatar ? base_url('uploads/avatars/' . $avatar) : base_url('assets/img/favicon/logo-150.png');
-                                ?>
-                                <!-- Image de l'avatar ou image par défaut -->
-                                <img src="<?= $avatarUrl; ?>"
-                                     alt="Avatar"
-                                     class="rounded-circle border border-2 border-secondary shadow"
-                                     style="width: 100px; height: 100px; object-fit: cover;">
+        <div class="card mb-3">
+            <div class="card-header">Informations joueur(s)</div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <a href="/cantina/recruit/1">
+                            <img src="/assets/img/logo-150.png" class="img-fluid rounded" alt="banniere du User"
 
-                                <!-- Bouton icône d'appareil photo pour charger une image -->
-                                <label for="avatar-input"
-                                       class="btn btn-sm btn-primary rounded-circle position-absolute bottom-0 end-0 p-2 shadow"
-                                       style="cursor: pointer;"
-                                       title="Changer l'image">
-                                    <i class="fa-solid fa-camera"></i>
-                                </label>
-
-                                <!-- Input de fichier caché -->
-                                <input type="file" name="avatar" id="avatar-input" class="d-none" accept="image/*">
+                        </a>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <div class="d-flex align-items-center h-100">
+                                Niveau : <span class="badge rounded-pill text-bg-info ms-3"><?= $user->getPlayer()->level; ?></span>
+                                </div>
                             </div>
                         </div>
 
@@ -115,6 +104,23 @@ if (isset($user)) {
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="card">
+            <div class="card-header">L'equipage</div>
+            <div class="card-body">
+                <div class="row row-cols-2 row-cols-md-4 g-3">
+                    <?php if (count($user->getPlayer()->getHeroes())> 0) : ?>
+                    <?php foreach ($user->getPlayer()->getHeroes() as $hero) : ?>
+                    <div class="col">
+                    <?= view_cell('heroCell',['character' => $hero]) ?>
+                    </div>
+                    <?php endforeach; ?>
+                    <?php else: ?>
+                        L'equipage est tristement vide'
+                    <?php endif ?>;
+                </div>
+            </div>
+        </div>
         <?php endif; ?>
     </div>
     <div class="col-md-3">
