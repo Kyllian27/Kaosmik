@@ -17,98 +17,104 @@ class CreateMissionTable extends Migration
             ],
             'title' => [
                 'type' => 'VARCHAR',
-                'constraint' => 255,
-                'null'=> false,
+                'constraint' => 150,
+                'null' => false,
             ],
             'description' => [
                 'type' => 'TEXT',
-                'null'=> true,
+                'null' => true,
             ],
             'level_required' => [
                 'type' => 'INT',
                 'constraint' => 11,
                 'unsigned' => true,
-                'null'=> false,
+                'null' => false,
             ],
             'power_required_min' => [
                 'type' => 'INT',
                 'constraint' => 11,
                 'unsigned' => true,
-                'null'=> false,
+                'null' => false,
             ],
             'power_required_max' => [
                 'type' => 'INT',
                 'constraint' => 11,
                 'unsigned' => true,
-                'null'=> false,
+                'null' => false,
             ],
             'stamina_cost_min' => [
                 'type' => 'INT',
                 'constraint' => 11,
                 'unsigned' => true,
-                'null'=> false,
+                'null' => false,
             ],
             'stamina_cost_max' => [
                 'type' => 'INT',
                 'constraint' => 11,
                 'unsigned' => true,
-                'null'=> false,
+                'null' => false,
             ],
-            'credits_reward_min'=> [
+            'team_size_max' => [
                 'type' => 'INT',
                 'constraint' => 11,
                 'unsigned' => true,
-                'null'=> false,
+                'null' => true,
+            ],
+            'credits_reward_min' => [
+                'type' => 'INT',
+                'constraint' => 11,
+                'unsigned' => true,
+                'null' => false,
             ],
             'credits_reward_max' => [
                 'type' => 'INT',
                 'constraint' => 11,
                 'unsigned' => true,
-                'null'=> false,
+                'null' => false,
             ],
             'energy_reward_min' => [
                 'type' => 'INT',
                 'constraint' => 11,
                 'unsigned' => true,
-                'null'=> false,
+                'null' => false,
             ],
             'energy_reward_max' => [
                 'type' => 'INT',
                 'constraint' => 11,
                 'unsigned' => true,
-                'null'=> false,
+                'null' => false,
             ],
-            'exeperience_reward_min' => [
+            'experience_reward_min' => [
                 'type' => 'INT',
                 'constraint' => 11,
                 'unsigned' => true,
-                'null'=> false,
+                'null' => false,
             ],
-            'exeperience_reward_max' => [
+            'experience_reward_max' => [
                 'type' => 'INT',
                 'constraint' => 11,
                 'unsigned' => true,
-                'null'=> false,
+                'null' => false,
             ],
             'created_at' => [
                 'type' => 'DATETIME',
-                'null'=> true,
+                'null' => true,
             ],
             'updated_at' => [
                 'type' => 'DATETIME',
-                'null'=> true,
+                'null' => true,
             ],
             'deleted_at' => [
                 'type' => 'DATETIME',
-                'null'=> true,
+                'null' => true,
             ]
         ]);
-        $this->forge->addPrimaryKey('id', true);
-        $this->forge->createTable('mission_template', true);
+        $this->forge->addPrimaryKey('id');
+        $this->forge->createTable('missions');
     }
 
     public function down()
     {
-        $this->forge->dropTable('mission_template');
+        $this->forge->dropTable('missions');
     }
 }

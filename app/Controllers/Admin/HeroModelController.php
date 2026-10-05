@@ -59,7 +59,6 @@ class HeroModelController extends BaseController
                             'entity_id' => $heromodeldata['id']
                         ]
                     );
-
                 }
                 $this->success('Le modèle : ' . $heromodel->name . '. A bien été modifié.');
                 $id = $heromodeldata['id'];

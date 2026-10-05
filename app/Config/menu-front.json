@@ -9,5 +9,10 @@
     "title" : "Equipage",
     "url" : "/equipage",
     "icon" : "<i class=\"fa-solid fa-users\"></i>"
+  },
+  "mission" : {
+    "title" : "Missions",
+    "url" : "/mission",
+    "icon" : "<i class=\"fa-brands fa-space-awesome\"></i>"
   }
 }

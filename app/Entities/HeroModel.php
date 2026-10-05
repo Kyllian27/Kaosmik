@@ -22,7 +22,7 @@ class HeroModel extends Entity
     protected $specialization = null;
     public function getSpecialization() {
         if($this->specialization === null && ($this->specialization_id)) {
-            $sm = model(SpecializationModel::class);
+            $sm = model('SpecializationModel');
             $this->specialization = $sm->where('id', $this->specialization_id)->first();
         }
         return $this->specialization;

@@ -11,7 +11,7 @@ class HeroModelModel extends Model
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $returnType       = HeroModel::class;
-    protected $useSoftDeletes   = false;
+    protected $useSoftDeletes   = false; // Désactivé car la colonne 'deleted_at' n'existe pas en BDD
     protected $protectFields    = true;
     protected $allowedFields    = ['specialization_id','name', 'description','power_min','power_max', 'cost_credits_min', 'cost_credits_max', 'level_required'];
 

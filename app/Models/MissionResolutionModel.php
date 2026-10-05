@@ -2,18 +2,25 @@
 
 namespace App\Models;
 
-use App\Entities\Hero;
+use App\Entities\MissionResolution;
 use CodeIgniter\Model;
 
-class HeroModel extends Model
+class MissionResolutionModel extends Model
 {
-    protected $table            = 'heroes';
+    protected $table            = 'mission_resolutions';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
-    protected $returnType       = Hero::class;
+    protected $returnType       = MissionResolution::class;
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['player_id','hero_model_id','rarity_id','name','power','cost_credit','stamina_current','stamina_max','last_stamina_update'];
+    protected $allowedFields    = [
+        'player_id',
+        'mission_id',
+        'success',
+        'credits_gained',
+        'energy_gained',
+        'experience_gained',
+    ];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;
@@ -41,22 +48,7 @@ class HeroModel extends Model
     protected $beforeUpdate   = [];
     protected $afterUpdate    = [];
     protected $beforeFind     = [];
-    protected $afterFind      = ['refreshStamina'];
+    protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
-
-    protected function refreshStamina(array $data) {
-        if(empty($data['data'])) {
-            return $data;
-        }
-        $heroes = is_array($data['data']) ? $data['data'] : [$data['data']];
-
-        foreach($heroes as $hero) {
-            if($hero instanceof Hero && $hero->updateStamina()){
-                $this->save($hero);
-            }
-        }
-
-        return $data;
-    }
 }

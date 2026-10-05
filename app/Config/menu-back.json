@@ -28,5 +28,11 @@
     "url" : "/admin/hero-model",
     "icon" : "<i class=\"fa-solid fa-shield-halved \"></i>",
     "class" : ""
+  },
+  "mission" : {
+    "title" : "Missions",
+    "url" : "/admin/mission",
+    "icon" : "<i class=\"fa-solid fa-scroll\"></i>",
+    "class" : ""
   }
   }

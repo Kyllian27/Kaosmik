@@ -11,14 +11,14 @@
         </button>
 
         <?= form_open('equipage/sell-bulk', ['id'=> 'form-sell-bulk', 'class' => 'd-none']) ?>
-        <div id="bulk-inputs"></div>
-        <button type="submit" id="btn-sell-bulk" class="btn btn-danger ms-3" disabled>
-            Licencer la selection ( <i class="fa-solid fa-cent-sign"></i> <span id="bulk-price">0</span> )
-        </button>
+            <div id="bulk-inputs"></div>
+            <button type="submit" id="btn-sell-bulk" class="btn btn-danger ms-3" disabled>
+                Licencer la selection ( <i class="fa-solid fa-cent-sign"></i> <span id="bulk-price">0</span> )
+            </button>
         <?= form_close() ?>
     </div>
 </div>
-<div class="row row-cols-6 g-3">
+<div class="row row-cols-2 row-cols-md-4 row-cols-lg-6 g-3">
     <?php
     foreach($logged_user->getPlayer()->getHeroes() as $hero) : ?>
         <div class="col">
@@ -84,7 +84,7 @@
 
             //Masquer / afficher le formulaire de vente en lot
             document.querySelectorAll('.js-bulk-checkbox-container').forEach(el => {
-                el.classList.toggle('d-none', !isBulkInactive);
+               el.classList.toggle('d-none', !isBulkInactive);
             });
             document.querySelectorAll('.js-single-sell-form').forEach(el => {
                 el.classList.toggle('d-none', isBulkInactive);
@@ -106,7 +106,7 @@
 
         //Ecoute du changement sur chaque checkbox
         document.querySelectorAll('.js-hero-select').forEach(checkbox => {
-            checkbox.addEventListener('change', updateBulkTotal);
+           checkbox.addEventListener('change', updateBulkTotal);
         });
 
         //Confirmation Swal2 pour la vente en lot
@@ -138,25 +138,25 @@
 
             bulkInputs.innerHTML = '';
             document.querySelectorAll('.js-hero-select').forEach(checkbox => {
-                const card = checkbox.closest('.js-hero-card');
+               const card = checkbox.closest('.js-hero-card');
 
-                if(checkbox.checked) {
+               if(checkbox.checked) {
 
-                    card.classList.add('is-selected');
-                    const price = parseInt(card.dataset.sellPrice) || 0;
-                    const heroId = card.dataset.id;
-                    total += price;
-                    count++;
+                   card.classList.add('is-selected');
+                   const price = parseInt(card.dataset.sellPrice) || 0;
+                   const heroId = card.dataset.id;
+                   total += price;
+                   count++;
 
-                    //Ajouter mon input caché
-                    const hiddenInput = document.createElement('input');
-                    hiddenInput.type = 'hidden';
-                    hiddenInput.name = 'ids[]';
-                    hiddenInput.value = heroId;
-                    bulkInputs.appendChild(hiddenInput);
-                } else {
-                    card.classList.remove('is-selected');
-                }
+                   //Ajouter mon input caché
+                   const hiddenInput = document.createElement('input');
+                   hiddenInput.type = 'hidden';
+                   hiddenInput.name = 'ids[]';
+                   hiddenInput.value = heroId;
+                   bulkInputs.appendChild(hiddenInput);
+               } else {
+                   card.classList.remove('is-selected');
+               }
             });
 
             bulkPrice.textContent = total;

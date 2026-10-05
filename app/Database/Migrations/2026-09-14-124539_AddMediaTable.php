@@ -57,11 +57,13 @@ class AddMediasTable extends Migration
             ]
         ]);
         $this->forge->addPrimaryKey('id');
-        $this->forge->createTable('medias');
+
+        // Le paramètre true ajoute "IF NOT EXISTS"
+        $this->forge->createTable('medias', true);
     }
 
     public function down()
     {
-        $this->forge->dropTable('medias');
+        $this->forge->dropTable('medias', true);
     }
 }

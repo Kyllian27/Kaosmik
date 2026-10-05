@@ -27,7 +27,18 @@ $routes->group('', ['filter' => 'session'], function($routes) {
        $routes->post('sell/(:num)', 'CrewController::sell/$1');
        $routes->post('sell-bulk', 'CrewController::sellBulk');
     });
+    //Routes pour les missions
+    $routes->group('mission', function($routes) {
+       $routes->get('/', 'MissionController::index');
+       $routes->get('details/(:num)', 'MissionController::details/$1');
+       $routes->post('envoyer-l-equipage', 'MissionController::sendCrew');
+       $routes->post('send-crew', 'MissionController::validateMission');
+       $routes->get('resultats', 'MissionController::results');
+    });
     //Routes pour le profil
+    $routes->group('mon-profil', function($routes) {
+        $routes->get('mes-anciennes-missions', 'UserController::oldMissions');
+    });
 });
 
 //Routes pour l'administration
@@ -70,5 +81,13 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Admin', 'filter' => 'gr
         $routes->get('edit/(:num)', 'HeroModelController::edit/$1');
         $routes->post('create-update', 'HeroModelController::createUpdate');
         $routes->get('delete/(:num)', 'HeroModelController::delete/$1');
+    });
+
+    $routes->group('mission', function ($routes) {
+        $routes->get('/', 'MissionController::index');
+        $routes->get('new', 'MissionController::new');
+        $routes->get('edit/(:num)', 'MissionController::edit/$1');
+        $routes->post('create-update', 'MissionController::createUpdate');
+        $routes->get('delete/(:num)', 'MissionController::delete/$1');
     });
 });

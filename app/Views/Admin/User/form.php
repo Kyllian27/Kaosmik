@@ -51,8 +51,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-6">
-                        <img class="avatar me-3" src="<?= (isset($hm) && $hm->getImage()) ? $hm->getImage()->getUrl() : base_url('/assets/img/no-img.png'); ?>">
-                        <input type="file" name="image" class="form-control" placeholder="Image" title="Image">
+                        AVATAR
                     </div>
                     <div class="col-md-6">
                         <div class="row mb-3">

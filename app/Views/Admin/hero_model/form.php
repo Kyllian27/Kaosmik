@@ -52,7 +52,7 @@
                         <span class="input-icon-addon">
                             <i class="fa-solid fa-hand-fist"></i>
                         </span>
-                        <input type="number" name="power_min" class="form-control" placeholder="Puissance Minimale" title="Puissance Minimale" value="<?= isset($hm) ? $hm->power_min : ''?>" required">
+                        <input type="number" name="power_min" class="form-control" placeholder="Puissance Minimale" title="Puissance Minimale" value="<?= isset($hm) ? $hm->power_min : ''?>" required>
                     </div>
                 </div>
                 <div class="mb-3">
@@ -61,7 +61,7 @@
                             <span class="input-icon-addon">
                                 <i class="fa-solid fa-hand-fist"></i>
                             </span>
-                        <input type="number" name="power_max" class="form-control" placeholder="Puissance Maximale" title="Puissance Maximale" value="<?= isset($hm) ? $hm->power_max : ''?>" required">
+                        <input type="number" name="power_max" class="form-control" placeholder="Puissance Maximale" title="Puissance Maximale" value="<?= isset($hm) ? $hm->power_max : ''?>" required>
                     </div>
                 </div>
                 <div class="mb-3">
@@ -70,7 +70,7 @@
                             <span class="input-icon-addon">
                                 <i class="fa-solid fa-cent-sign"></i>
                             </span>
-                        <input type="number" name="cost_credits_min" class="form-control" placeholder="Coût minimum" title="Coût minimum" value="<?= isset($hm) ? $hm->cost_credits_min : ''?>" required">
+                        <input type="number" name="cost_credits_min" class="form-control" placeholder="Coût minimum" title="Coût minimum" value="<?= isset($hm) ? $hm->cost_credits_min : ''?>" required>
                     </div>
                 </div>
                 <div class="mb-3">
@@ -79,7 +79,7 @@
                             <span class="input-icon-addon">
                                 <i class="fa-solid fa-cent-sign"></i>
                             </span>
-                        <input type="number" name="cost_credits_max" class="form-control" placeholder="Coût maximum" title="Coût maximum" value="<?= isset($hm) ? $hm->cost_credits_max : ''?>" required">
+                        <input type="number" name="cost_credits_max" class="form-control" placeholder="Coût maximum" title="Coût maximum" value="<?= isset($hm) ? $hm->cost_credits_max : ''?>" required>
                     </div>
                 </div>
                 <div class="mb-3">
