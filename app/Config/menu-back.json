@@ -11,24 +11,28 @@
     "icon" : "<i class=\"fa-solid fa-gear\"></i>",
     "class": ""
   },
-  "rarity-level" : {
-    "title" : "Gestion des niveaux de rareté",
+  "rarity_level" : {
+    "title" : "Raretés",
     "url" : "/admin/rarity-level",
-    "icon" :"<i class=\"fa-solid fa-gear\"></i>",
-    "class" :""
-  },
-  "specialization_level" : {
-    "title": "Specialization de level",
-    "url": "/admin/specialization-level",
-    "icon":"<i class=\"fa-solid fa-user-shield\"></i>",
+    "icon" : "<i class=\"fa-solid fa-star\"></i>",
     "class": ""
   },
-"hero_model" : {
-  "title": "Model de Hero",
-  "url": "/admin/hero-model",
-  "icon":"<i class=\"fa-solid fa-shield-halved\"></i>",
-  "class": ""
-
-}
-
+  "specialization" : {
+    "title" : "Spécialisations",
+    "url" : "/admin/specialization",
+    "icon" : "<i class=\"fa-solid fa-graduation-cap\"></i>",
+    "class": ""
+  },
+  "hero_model" : {
+    "title" : "Model de Hero",
+    "url" : "/admin/hero-model",
+    "icon" : "<i class=\"fa-solid fa-shield-halved \"></i>",
+    "class" : ""
+  },
+  "mission" : {
+    "title" : "Missions",
+    "url" : "/admin/mission",
+    "icon" : "<i class=\"fa-solid fa-scroll\"></i>",
+    "class" : ""
+  }
   }

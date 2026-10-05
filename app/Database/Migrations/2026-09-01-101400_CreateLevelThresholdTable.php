@@ -37,7 +37,7 @@ class CreateLevelTresholdTable extends Migration
             ]
         ]);
         $this->forge->addPrimaryKey('id');
-        $this->forge->createTable('level_thresholds',true);
+        $this->forge->createTable('level_thresholds');
     }
 
     public function down()

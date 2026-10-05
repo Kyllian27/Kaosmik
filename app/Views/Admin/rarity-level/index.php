@@ -16,9 +16,9 @@
                     <input type="text" name="name" class="form-control" placeholder="Nom de la rareté" value="" title="Rareté" required>
                 </div>
                 <div class="d-flex justify-content-between align-items-center mb-3 form-control ">
-                    <label for="color" style="color: white; font-size: 1.2em">
-                        <i class="fa-solid fa-palette me-2"></i> Couleur
-                    </label>
+                        <label for="color" style="color: var(--tblr-icon-color); font-size: 1.2em">
+                            <i class="fa-solid fa-palette me-2"></i> Couleur
+                        </label>
                     <input type="color" id="color" name="color" class="form-control form-control-color" placeholder="Couleur de la rareté" value="" title="Couleur" required>
                 </div>
                 <div class="input-icon mb-3">
@@ -64,7 +64,7 @@
                     <?php foreach ($rarityLevels as $rarityLevel) : ?>
                         <tr>
                             <td><?= $rarityLevel->name; ?></td>
-                            <td><span class="badge" style="background-color:<?= $rarityLevel->color; ?>; color: white;"><?= $rarityLevel->color; ?></span></td>
+                            <td><span class="badge fw-bold" style="background-color:<?= $rarityLevel->color; ?>; color:white;"><?= $rarityLevel->color; ?></span></td>
                             <td><?= $rarityLevel->power_multiplier; ?></td>
                             <td><?= $rarityLevel->cost_multiplier; ?></td>
                             <td><?= $rarityLevel->appearance_rate; ?></td>
@@ -100,7 +100,7 @@
                     <input id="updateName" type="text" name="name" class="form-control" placeholder="Nom de la rareté" value="" title="Rareté" required>
                 </div>
                 <div class="d-flex justify-content-between align-items-center mb-3 form-control ">
-                    <label for="updateColor" style="color: white; font-size: 1.2em">
+                    <label for="updateColor" style="color: var(--tblr-icon-color); font-size: 1.2em">
                         <i class="fa-solid fa-palette me-2"></i> Couleur
                     </label>
                     <input type="color" id="updateColor" name="color" class="form-control form-control-color" placeholder="Couleur de la rareté" value="" title="Couleur" required>

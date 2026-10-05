@@ -13,7 +13,7 @@ class HeroNameModel extends Model
     protected $useSoftDeletes   = false;
     protected $allowedFields    = ['name'];
 
-    public function getRandom(){
+    public function getRandom() {
         return $this->orderBy('RAND()')->first()['name'];
     }
 }

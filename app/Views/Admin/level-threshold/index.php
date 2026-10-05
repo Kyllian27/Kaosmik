@@ -53,6 +53,8 @@
                                 <?= form_close(); ?>
                                 <span
                                     class="ms-2 btn btn-sm btn-warning openEditModal"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#editModal"
                                     data-level="<?= $lt['level'];?>"
                                     data-exp="<?= $lt['experience_required'];?>"
                                     data-id="<?= $lt['id'];?>">
@@ -111,11 +113,17 @@
 </style>
 <script>
     $(document).ready(function(){
-        const modalEdit = new bootstrap.Modal('#editModal');
-        $(document).on('click','.openEditModal', function() {
-            let id = $(this).data('id');
-            let level = $(this).data('level');
-            let exp = $(this).data('exp');
+        // A n'écouter qu'en JS natif : tabler.min.js dispatche un évènement DOM
+        // dont le "type" est littéralement "show.bs.modal". jQuery .on('show.bs.modal', ...)
+        // interprète le point comme un namespace et n'écoute que "show", donc ne se déclenche jamais.
+        document.getElementById('editModal').addEventListener('show.bs.modal', function (event) {
+            let button = event.relatedTarget;
+            let id = button.getAttribute('data-id');
+            let level = button.getAttribute('data-level');
+            let exp = button.getAttribute('data-exp');
             $('#updateId').val(id);
             $('#updateLevel').val(level);
-            $('#updateExperience').val
+            $('#updateExperience').val(exp);
+        })
+    });
+</script>

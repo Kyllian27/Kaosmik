@@ -3,68 +3,68 @@
 namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
-use App\Models\RarityLevelModel;
 use App\Entities\RarityLevel;
+use App\Models\RarityLevelModel;
+use CodeIgniter\HTTP\ResponseInterface;
 
 class RarityLevelController extends BaseController
 {
-    // Chargement du helper de formulaire pour l'utilisation de form_open(), form_close(), etc.
-    protected $helpers = ['form'];
     protected $layout = 'back';
+    private $rarityLevelModel;
+    protected $current_menu = "rarity_level";
 
-    protected $rarityLevelModel;
-
-    public function __construct()
-    {
+    public function __construct() {
         $this->rarityLevelModel = new RarityLevelModel();
     }
-
     public function index()
     {
-        $data = [
-            'rarityLevels' => $this->rarityLevelModel->findAll()
-        ];
-
-        return $this->render('admin/rarity-level/index', $data);
+        helper('form');
+        $rarityLevels = $this->rarityLevelModel->findAll();
+        return $this->render('admin/rarity-level/index', ['rarityLevels' => $rarityLevels]);
     }
 
-    public function create()
-    {
-        $rarity = new RarityLevel($this->request->getPost());
-
-        if ($this->rarityLevelModel->save($rarity)) {
-            return redirect()->to('admin/rarity-level')->with('success', 'Rareté ajoutée avec succès.');
+    public function create() {
+        $data = $this->request->getPost();
+        $rarityLevel = new RarityLevel();
+        $rarityLevel->fill($data);
+        $saveOk = $this->rarityLevelModel->save($rarityLevel);
+        if ($saveOk) {
+            $this->success('Rareté ajouté');
+        } else {
+            $this->error('Une erreur est survenue, la rareté n\'est pas ajoutée.');
         }
-
-        return redirect()->back()->withInput()->with('errors', $this->rarityLevelModel->errors());
+        return $this->redirect('admin/rarity-level');
     }
 
-    public function update()
-    {
-        $id = $this->request->getPost('id');
-        $rarity = $this->rarityLevelModel->find($id);
-
-        if (!$rarity) {
-            return redirect()->to('admin/rarity-level')->with('error', 'Rareté introuvable.');
+    public function update() {
+        $data = $this->request->getPost();
+        $rarityLevel = new RarityLevel();
+        $rarityLevel->fill($data);
+        $saveOk = $this->rarityLevelModel->save($rarityLevel);
+        if ($saveOk) {
+            $this->success('Rareté modifié');
+        } else {
+            $this->error('Une erreur est survenue, la rareté n\'est pas modifié.');
         }
-
-        $rarity->fill($this->request->getPost());
-
-        if ($this->rarityLevelModel->save($rarity)) {
-            return redirect()->to('admin/rarity-level')->with('success', 'Rareté mise à jour.');
-        }
-
-        return redirect()->back()->withInput()->with('errors', $this->rarityLevelModel->errors());
+        return $this->redirect('admin/rarity-level');
     }
 
-    public function delete()
-    {
-        $id = $this->request->getPost('id');
-
-        if ($this->rarityLevelModel->delete($id)) {
-            return redirect()->to('admin/rarity-level')->with('success', 'Rareté supprimée.');
+    public function delete() {
+        try {
+            $id = $this->request->getPost('id');
+//            if ($id == 1) {
+//                $this->error("Impossible de supprimer la rareté par défaut (commun)");
+//                return $this->redirect('admin/rarity-level');
+//            }
+            $deleteOk = $this->rarityLevelModel->delete($id);
+            if($deleteOk){
+                $this->success('Rareté supprimée');
+            } else {
+                $this->error('Une erreur est survenue');
+            }
+        } catch (\Exception $e) {
+            $this->error($e->getMessage());
         }
-
-        return redirect()->to('admin/rarity-level')->with('error', 'Impossible de supprimer cette rareté.');
+        return $this->redirect('admin/rarity-level');
     }
 }

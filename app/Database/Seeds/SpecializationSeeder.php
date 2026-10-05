@@ -71,6 +71,7 @@ class SpecializationSeeder extends Seeder
                 'updated_at'  => $now,
             ],
         ];
+
         $this->db->table('specializations')->insertBatch($specializations);
     }
 }

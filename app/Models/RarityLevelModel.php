@@ -77,8 +77,8 @@ class RarityLevelModel extends Model
 
         //On calcul la somme de toutes les raretés autres que commun
         $result = $this->select('SUM(appearance_rate) as total')
-            ->where(['id !=' => 1])
-            ->first();
+                        ->where(['id !=' => 1])
+                        ->first();
 
         $sum = $result->total ?? 0;
         $newCommonRate = 100 - $sum;

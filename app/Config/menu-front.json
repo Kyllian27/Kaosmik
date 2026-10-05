@@ -1,13 +1,18 @@
 {
-  "cantina": {
-    "title": "Recruter",
-    "url": "/cantina",
-    "icon": "<i class=\"fa-solid fa-user-astronaut\"></i>",
+  "cantina" : {
+    "title" : "Recruter",
+    "url" : "/cantina",
+    "icon" : "<i class=\"fa-solid fa-user-astronaut\"></i>",
     "class": ""
   },
-  "crew": {
-    "title": "Equipage",
-    "url": "/equipage",
-    "icon": "<i class=\"fa-solid fa-user\"></i>"
+  "crew" : {
+    "title" : "Equipage",
+    "url" : "/equipage",
+    "icon" : "<i class=\"fa-solid fa-users\"></i>"
+  },
+  "mission" : {
+    "title" : "Missions",
+    "url" : "/mission",
+    "icon" : "<i class=\"fa-brands fa-space-awesome\"></i>"
   }
 }

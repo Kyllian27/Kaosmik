@@ -41,7 +41,22 @@ class HeroModel extends Model
     protected $beforeUpdate   = [];
     protected $afterUpdate    = [];
     protected $beforeFind     = [];
-    protected $afterFind      = [];
+    protected $afterFind      = ['refreshStamina'];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    protected function refreshStamina(array $data) {
+        if(empty($data['data'])) {
+            return $data;
+        }
+        $heroes = is_array($data['data']) ? $data['data'] : [$data['data']];
+
+        foreach($heroes as $hero) {
+            if($hero instanceof Hero && $hero->updateStamina()){
+                $this->save($hero);
+            }
+        }
+
+        return $data;
+    }
 }

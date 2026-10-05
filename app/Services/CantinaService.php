@@ -100,7 +100,7 @@ class CantinaService
         $player = $this->playerModel->find($player_id);
 
         //Vérifier si on à encore de la place dans l'équipe
-        if ($player->isFleetFull() == true) {
+        if ($player->isFleetFull()) {
             return null;
         }
         //Verification du solde

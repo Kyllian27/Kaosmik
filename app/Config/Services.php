@@ -3,6 +3,7 @@
 namespace Config;
 
 use App\Services\CantinaService;
+use App\Services\MissionService;
 use CodeIgniter\Config\BaseService;
 
 /**
@@ -20,15 +21,20 @@ use CodeIgniter\Config\BaseService;
  */
 class Services extends BaseService
 {
-    public static function cantina(bool $getShared = true): CantinaService
-    {
-        if ($getShared) {
+
+    public static function cantina(bool $getShared = true) : CantinaService {
+        if($getShared) {
             return static::getSharedInstance('cantina');
         }
-
-        return new \App\Services\CantinaService();
+        return new CantinaService();
     }
 
+    public static function mission(bool $getShared = true) : MissionService {
+        if($getShared) {
+            return static::getSharedInstance('mission');
+        }
+        return new MissionService();
+    }
     /*
      * public static function example($getShared = true)
      * {

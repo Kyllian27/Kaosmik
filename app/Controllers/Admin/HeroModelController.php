@@ -9,23 +9,23 @@ use CodeIgniter\HTTP\ResponseInterface;
 class HeroModelController extends BaseController
 {
     protected $layout = 'back';
-    protected $current_menu = 'hero-model';
+    protected $current_menu = 'hero_model';
     private $heroModel = null;
     private $specializationModel = null;
     public function __construct() {
         $this->heroModel = model('HeroModelModel');
-        $this->specializationModel = model('SpecializationLevelModel');
+        $this->specializationModel = model('SpecializationModel');
     }
     public function index()
     {
         $heromodels = $this->heroModel->findAll();
-        return $this->render('admin/hero-model/index', ['heromodels' => $heromodels]);
+        return $this->render('admin/hero_model/index', ['heromodels' => $heromodels]);
     }
 
     public function new() {
         helper('form');
         $specializations = $this->specializationModel->findAll();
-        return $this->render('admin/hero-model/form', ['specializations' => $specializations]);
+        return $this->render('admin/hero_model/form', ['specializations' => $specializations]);
     }
     public function edit($id = null) {
         if($id != null) {
@@ -33,11 +33,11 @@ class HeroModelController extends BaseController
             if($heromodel) {
                 helper('form');
                 $specializations = $this->specializationModel->findAll();
-                return $this->render('admin/hero-model/form', ['hm' => $heromodel, 'specializations' => $specializations]);
+                return $this->render('admin/hero_model/form', ['hm' => $heromodel, 'specializations' => $specializations]);
             }
         }
         $this->error('Aucun modèle trouvé');
-        return $this->redirect('/admin/hero-model');
+        return $this->redirect('/admin/hero_model');
     }
 
     public function createUpdate() {
@@ -59,7 +59,6 @@ class HeroModelController extends BaseController
                             'entity_id' => $heromodeldata['id']
                         ]
                     );
-
                 }
                 $this->success('Le modèle : ' . $heromodel->name . '. A bien été modifié.');
                 $id = $heromodeldata['id'];

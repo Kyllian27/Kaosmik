@@ -47,7 +47,7 @@ class MediaModel extends Model
 
     public function getOneMedia($entity_type, $entity_id) {
         return $this->where('entity_type', $entity_type)
-            ->where('entity_id', $entity_id)
-            ->first();
+                    ->where('entity_id', $entity_id)
+                    ->first();
     }
 }
