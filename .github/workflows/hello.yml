@@ -1,0 +1,8 @@
+name: hello.yml
+on:
+
+jobs:
+  Run echo "Hello, GitHub Actions!"
+  echo "Hello, GitHub Actions!"
+shell: /usr/bin/bash -e {0}
+  Hello, GitHub Actions!

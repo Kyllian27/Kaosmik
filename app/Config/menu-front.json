@@ -14,5 +14,10 @@
     "title" : "Missions",
     "url" : "/mission",
     "icon" : "<i class=\"fa-brands fa-space-awesome\"></i>"
+  },
+  "chat": {
+    "title" : "Chat",
+    "url" : "/chat",
+    "icon" : "<i class=\"fa-brands fa-space-awesome\"></i>"
   }
 }
