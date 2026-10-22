@@ -17,27 +17,34 @@ $routes->get('logout', [AuthController::class, 'logoutAction']);
 $routes->group('', ['filter' => 'session'], function($routes) {
     //Routes pour la cantina
     $routes->group('cantina', function($routes) {
-       $routes->get('/', 'CantinaController::index');
-       $routes->post('refresh', 'CantinaController::refresh');
-       $routes->post('recruit/(:num)', 'CantinaController::recruit/$1');
+        $routes->get('/', 'CantinaController::index');
+        $routes->post('refresh', 'CantinaController::refresh');
+        $routes->post('recruit/(:num)', 'CantinaController::recruit/$1');
     });
     //Routes pour l'équipage
     $routes->group('equipage', function($routes) {
-       $routes->get('/', 'CrewController::index');
-       $routes->post('sell/(:num)', 'CrewController::sell/$1');
-       $routes->post('sell-bulk', 'CrewController::sellBulk');
+        $routes->get('/', 'CrewController::index');
+        $routes->post('sell/(:num)', 'CrewController::sell/$1');
+        $routes->post('sell-bulk', 'CrewController::sellBulk');
     });
     //Routes pour les missions
     $routes->group('mission', function($routes) {
-       $routes->get('/', 'MissionController::index');
-       $routes->get('details/(:num)', 'MissionController::details/$1');
-       $routes->post('envoyer-l-equipage', 'MissionController::sendCrew');
-       $routes->post('send-crew', 'MissionController::validateMission');
-       $routes->get('resultats', 'MissionController::results');
+        $routes->get('/', 'MissionController::index');
+        $routes->get('details/(:num)', 'MissionController::details/$1');
+        $routes->post('envoyer-l-equipage', 'MissionController::sendCrew');
+        $routes->post('send-crew', 'MissionController::validateMission');
+        $routes->get('resultats', 'MissionController::results');
     });
     //Routes pour le profil
     $routes->group('mon-profil', function($routes) {
         $routes->get('mes-anciennes-missions', 'UserController::oldMissions');
+    });
+    //Routes pour le chat
+    $routes->group('chat', function($routes) {
+        $routes->get('/', 'ChatController::index');
+        $routes->get('new-messages', 'ChatController::newMessages');
+        $routes->get('(:any)', 'ChatController::conversation/$1');
+        $routes->post('send', 'ChatController::send');
     });
 });
 
