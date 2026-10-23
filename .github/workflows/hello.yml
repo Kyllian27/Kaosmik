@@ -1,8 +1,9 @@
-name: hello.yml
-on:
+name: Hello World
+
+on: push
 
 jobs:
-  Run echo "Hello, GitHub Actions!"
-  echo "Hello, GitHub Actions!"
-shell: /usr/bin/bash -e {0}
-  Hello, GitHub Actions!
+  hello:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Hello, GitHub Actions!"
