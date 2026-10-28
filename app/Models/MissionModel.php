@@ -28,6 +28,7 @@ class MissionModel extends Model
         'energy_reward_max',
         'experience_reward_min',
         'experience_reward_max',
+        'duration'
     ];
 
     protected bool $allowEmptyInserts = false;

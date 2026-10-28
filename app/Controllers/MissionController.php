@@ -18,8 +18,16 @@ class MissionController extends BaseController
     {
         $this->title = "Choix de la mission";
         helper('form');
+        $player = auth()->user()->getPlayer();
+
+        foreach(service('mission')->resolveFinishedMission($player) as $r) {
+            $this->success(sprintf('Mission "%s" terminée : +%d crédits, +%d énergie, +%d XP.',$r['mission']->title, $r['credits'], $r['energy'], $r['xp']
+            ));
+        }
+
         $missions = $this->missionModel->findAll();
-        return $this->render('front/mission/index', ['missions' => $missions]);
+        $inProgress = model('MissionResolutionModel')->getMissionInProgress($player->id);
+        return $this->render('front/mission/index', ['missions' => $missions, 'inProgress' => $inProgress]);
     }
 
     public function details($id = null) {
@@ -30,25 +38,31 @@ class MissionController extends BaseController
 
     public function sendCrew() {
         helper('form');
+        $player = auth()->user()->getPlayer();
         $id = $this->request->getVar('mission_id');
         $mission = $this->missionModel->find($id);
-        return $this->render('front/mission/send-crew', ['mission' => $mission]);
+        return $this->render('front/mission/send-crew', [
+            'mission' => $mission,
+            'busyHeroIds' => model('MissionHeroModel')->getBusyHeroIds($player->id),
+        ]);
     }
 
     public function validateMission() {
         $data = $this->request->getPost();
         $player = auth()->user()->getPlayer();
         $heroes = $data['heroes_ids'];
-        $mission = $data['mission_id'];
+        $missionId = (int) $data['mission_id'];
         try{
             $missionService = service('mission');
-            $rewards = $missionService->processMission($player, $mission, $heroes);
+            $missionService->startMission($player, $missionId, $heroes);
         } catch (\Exception $e) {
             $this->error($e->getMessage());
             return $this->redirect('mission');
         }
 
-        return $this->redirect('mission/resultats', $rewards);
+        $mission = $this->missionModel->find($missionId);
+        $this->success("Escouade envoyée ! Retour dans " . $mission->getDurationLabel() .".");
+        return $this->redirect('mission');
     }
 
     public function results() {

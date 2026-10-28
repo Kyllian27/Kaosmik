@@ -69,6 +69,15 @@ $rangeFields = [
                         <input type="number" name="team_size_max" class="form-control" placeholder="Taille maximale de l'équipe" title="Taille maximale de l'équipe" min="1" value="<?= isset($mission) ? $mission->team_size_max : ''?>">
                     </div>
                 </div>
+                <div class="mb-3">
+                <label class="form-label">Duréé de la mission (en seconds</label>
+                    <div class="input-icon">
+                        <span class="input-icon-addon">
+                            <i class="fa-solid fa-hourglass-half"></i>
+                        </span>
+                        <input type="number" name="duration" class="form-control"placeholder="Durée en secondes" title="Durée en seconds"min="0" value="<?= isset($mission) ? $mission->duration : '60'?>required">
+                    </div>
+                </div>
                 <?php foreach ($rangeFields as [$prefix, $labelMin, $labelMax, $icon]) : ?>
                 <div class="row">
                     <?php foreach (['min' => $labelMin, 'max' => $labelMax] as $suffix => $label) :
