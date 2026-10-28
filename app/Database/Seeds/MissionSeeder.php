@@ -186,6 +186,7 @@ class MissionSeeder extends Seeder
 
         // Ajout des timestamps
         foreach ($missions as &$mission) {
+            $mission['duration'] = 60 * $mission['level_required'];
             $mission['created_at'] = $now;
             $mission['updated_at'] = $now;
         }

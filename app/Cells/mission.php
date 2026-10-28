@@ -47,6 +47,10 @@
                         <?php endif; ?>
                         <span class="ms-1"><?= $mission->getPowerRequired() ;?></span>
                     </li>
+                    <li class="list-group-item p-3">
+                        <i class="fa-solid fa-hourglass-half fs-2 text-info"></i>
+                        <span class="ms-1 fs-2"><?= $mission->getDurationLabel();?></span>
+                    </li>
                 </ul>
             </div>
         </div>

@@ -16,9 +16,11 @@ class MissionResolution extends Entity
         'credits_gained' => 0,
         'energy_gained' => 0,
         'experience_gained' => 0,
+        'ends_at' => null,
+        'resolved_at' => null,
     ];
     protected $datamap = [];
-    protected $dates   = ['created_at', 'updated_at'];
+    protected $dates   = ['created_at', 'updated_at', 'resolved_at','ends_at'];
     protected $casts   = [
         'id' => 'int',
         'player_id' => 'int',
@@ -31,6 +33,7 @@ class MissionResolution extends Entity
 
     protected ?Player  $player = null;
     protected ?Mission $mission = null;
+    protected ?Hero $heroes = null;
 
     public function getPlayer(): ?Player {
         if($this->player === null && ($this->attributes['player_id'])) {
@@ -46,5 +49,15 @@ class MissionResolution extends Entity
             $this->mission = $missionModel->find($this->attributes['mission_id']);
         }
         return $this->mission;
+    }
+    public function getHeroes(): ?Hero {
+        if($this->heroes === null && ($this->attributes['id'])) {
+           $heroModel = model(HeroModel::class);
+           $this->heroes = $heroModel->join("missions_heroes",'missions_heroes.hero_id = heroes.id')
+           ->where('missions_heroes.mission_resolution_id', $this->attributes['id'])
+           ->select('heroes.*')
+           ->findAll();
+        }
+        return $this->heroes;
     }
 }
